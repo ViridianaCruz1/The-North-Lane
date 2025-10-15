@@ -9,6 +9,7 @@ import {
   Menu,
 } from "lucide-react";
 import FilterMenu from "./FilterMenu";
+import OrdenarPor from "./OrdenarPor";
 
 export default function Navbar() {
   //   const [category, setCategory] = useState("All categories");
@@ -31,7 +32,7 @@ export default function Navbar() {
           <input
             type="text"
             placeholder="Buscar"
-            className="w-full border-y border-gray-200 px-4 py-2 focus:outline-none text-sm h-10 rounded-l-md"
+            className="w-full px-4 py-2 focus:outline-none text-sm h-10 rounded-l-md"
           />
           <button className="bg-[#A47E3B] hover:bg-[#D4AF7A] text-white px-4 py-2 rounded-r-md flex items-center justify-center h-10 ">
             <Search size={18} className="text-white" />
@@ -66,11 +67,12 @@ export default function Navbar() {
       </div>
 
       {/* --- Top Bar --- */}
-      <div className="flex justify-between items-center text-sm text-gray-400 px-6 ">
+      {/* <div className="flex justify-between items-center text-sm text-gray-400 px-6 ">
         <div className="flex items-center gap-1 cursor-pointer">
           <span>Ordenar por:</span> <ChevronDown className="w-4 h-4" />
         </div>
-      </div>
+      </div> */}
+      <OrdenarPor />
 
       {/* --- Bottom Navigation --- */}
       <nav className="flex justify-items-stretch justify-between sm:px-6 px-2 py-3 border-t border-gray-200 w-full">
