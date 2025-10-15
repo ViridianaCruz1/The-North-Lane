@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <header className="w-full border-b border-gray-200 bg-gray-200">
       {/* --- Middle Section: Logo + Search + Icons --- */}
-      <div className="flex flex-row justify-between items-center px-6 py-4 gap-3">
+      <div className="flex flex-row justify-between items-center px-6 pt-4 pb-0 gap-3">
         {/* Logo */}
         <span className="flex gap-2 items-center">
           <img
@@ -65,25 +65,15 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* --- Top Bar --- */}
+      <div className="flex justify-between items-center text-sm text-gray-400 px-6 ">
+        <div className="flex items-center gap-1 cursor-pointer">
+          <span>Ordenar por:</span> <ChevronDown className="w-4 h-4" />
+        </div>
+      </div>
+
       {/* --- Bottom Navigation --- */}
       <nav className="flex justify-items-stretch justify-between sm:px-6 px-2 py-3 border-t border-gray-200 w-full">
-        {/* <div className="flex flex-row sm:gap-3 gap-1">
-          <button className="flex items-center text-xs gap-2 bg-[#A47E3B] text-white sm:px-4 px-1 py-2 rounded-md hover:bg-[##D4AF7A]">
-            <Menu className="sm:h-4 sm:w-4 h-2 w-2" />
-            Casa
-            <ChevronDown className="h-4 w-4" />
-          </button>
-          <button className="flex items-center text-xs gap-2 bg-[#A47E3B] text-white px-4 py-2 rounded-md hover:bg-[##D4AF7A]">
-            <Menu className="sm:h-4 sm:w-4 h-2 w-2" />
-            Ocasión
-            <ChevronDown className="h-4 w-4" />
-          </button>
-          <button className="flex items-center text-xs gap-2 bg-[#A47E3B] text-white px-4 py-2 rounded-md hover:bg-[##D4AF7A]">
-            <Menu className="sm:h-4 sm:w-4 h-2 w-2" />
-            Origen
-            <ChevronDown className="h-4 w-4" />
-          </button>
-        </div> */}
         <FilterMenu />
 
         <ul className="lg:flex hidden flex-wrap gap-6 text-gray-700 font-medium">

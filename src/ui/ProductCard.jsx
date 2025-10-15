@@ -14,9 +14,7 @@ function ProductCard() {
       try {
         const data = await getParfums();
         // Ordenamos alfabéticamente por nombre
-        const sortedData = data.sort((a, b) =>
-          a.nombre.localeCompare(b.nombre)
-        );
+        const sortedData = data.sort((a, b) => a.casa.localeCompare(b.casa));
         console.log(sortedData);
         console.log(data);
         setParfums(data); // Guardamos los resultados en el estado
