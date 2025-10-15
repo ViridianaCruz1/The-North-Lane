@@ -13,6 +13,12 @@ function ProductCard() {
     async function fetchData() {
       try {
         const data = await getParfums();
+        // Ordenamos alfabéticamente por nombre
+        const sortedData = data.sort((a, b) =>
+          a.nombre.localeCompare(b.nombre)
+        );
+        console.log(sortedData);
+        console.log(data);
         setParfums(data); // Guardamos los resultados en el estado
       } catch (err) {
         console.error(err);
@@ -48,9 +54,9 @@ function ProductCard() {
           />
           <div className="sm:p-5 px-2 py-5 flex flex-col justify-between">
             <h3 className="sm:text-lg text-sm font-semibold text-gray-900 mb-2 2xl:flex-row">
-              {parfum.casa}
+              {parfum.nombre}
             </h3>
-            <p className="text-gray-500 text-xs mb-4">{parfum.nombre}</p>
+            <p className="text-gray-500 text-xs mb-4">{parfum.casa}</p>
             <div className="border-t border-gray-200 pt-4 flex flex-col justify-between">
               <span className="text-gray-800 text-sm font-semibold">
                 Precio: ${parfum.precio}/ml
