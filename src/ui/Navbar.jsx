@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import {
   Search,
   Heart,
@@ -8,9 +8,10 @@ import {
   ChevronDown,
   Menu,
 } from "lucide-react";
+import FilterMenu from "./FilterMenu";
 
 export default function Navbar() {
-  const [category, setCategory] = useState("All categories");
+  //   const [category, setCategory] = useState("All categories");
 
   return (
     <header className="w-full border-b border-gray-200 bg-gray-200">
@@ -66,7 +67,7 @@ export default function Navbar() {
 
       {/* --- Bottom Navigation --- */}
       <nav className="flex justify-items-stretch justify-between sm:px-6 px-2 py-3 border-t border-gray-200 w-full">
-        <div className="flex flex-row sm:gap-3 gap-1">
+        {/* <div className="flex flex-row sm:gap-3 gap-1">
           <button className="flex items-center text-xs gap-2 bg-[#A47E3B] text-white sm:px-4 px-1 py-2 rounded-md hover:bg-[##D4AF7A]">
             <Menu className="sm:h-4 sm:w-4 h-2 w-2" />
             Casa
@@ -82,7 +83,8 @@ export default function Navbar() {
             Origen
             <ChevronDown className="h-4 w-4" />
           </button>
-        </div>
+        </div> */}
+        <FilterMenu />
 
         <ul className="lg:flex hidden flex-wrap gap-6 text-gray-700 font-medium">
           <li>
