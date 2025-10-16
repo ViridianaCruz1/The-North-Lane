@@ -3,7 +3,7 @@ import { Sparkles } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <section className="flex flex-col items-center justify-center content-center bg-gray-50 text-gray-800 px-6">
+    <section className="flex flex-col items-center justify-center content-center bg-gray-50 text-gray-800 px-6 my-3">
       {/* Contenedor principal */}
       <div className="text-center max-w-md">
         {/* Ícono decorativo */}
