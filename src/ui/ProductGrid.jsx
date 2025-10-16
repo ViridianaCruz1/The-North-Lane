@@ -13,7 +13,7 @@ export default function ProductGrid() {
 
   // Estados para la paginacion
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 18;
+  const itemsPerPage = 36;
 
   // Llamada a la API cuando el componente se monta
   useEffect(() => {
