@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import getParfums from "../functions/getParfums";
 import LoadingSpinner from "./LoadingSpinner";
 import { useOrder } from "../context/OrderContext.jsx";
@@ -15,7 +15,6 @@ export default function ProductGrid() {
   // Estados para la paginacion
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 36;
-  const gridRef = useRef(null);
 
   // Llamada a la API cuando el componente se monta
   useEffect(() => {
@@ -59,7 +58,7 @@ export default function ProductGrid() {
   for (let i = 1; i <= totalPages; i++) pageNumbers.push(i);
 
   return (
-    <section ref={gridRef} className="bg-gray-50 py-12">
+    <section className="bg-gray-50 py-12">
       <div className="max-w-12xl mx-auto sm:mx-8 lg:mx-12 px-6">
         <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-8 md:gap-3">
           {currentParfums.map((parfum) => (
@@ -72,7 +71,6 @@ export default function ProductGrid() {
           totalPages={totalPages}
           onPageChange={setCurrentPage}
           maxPageButtons={5}
-          scrollRef={gridRef}
         />
       </div>
     </section>
