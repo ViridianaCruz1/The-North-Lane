@@ -3,6 +3,7 @@ export default function Pagination({
   totalPages,
   onPageChange,
   maxPageButtons = 5,
+  scrollRef,
 }) {
   // Calcular el rango de páginas visibles
   let startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
@@ -16,12 +17,30 @@ export default function Pagination({
   const pageNumbers = [];
   for (let i = startPage; i <= endPage; i++) pageNumbers.push(i);
 
+  const scrollToTopAfterRender = () => {
+    // Esperamos al siguiente ciclo de render para asegurar que el contenido ya se pintó
+    requestAnimationFrame(() => {
+      // Pequeña pausa extra (en ms) por seguridad en móviles
+      setTimeout(() => {
+        // Si el contenedor tiene ref, desplazamos hacia él
+        if (scrollRef?.current) {
+          const y =
+            scrollRef.current.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({ top: y - 20, behavior: "smooth" });
+        } else {
+          // Si no hay ref, desplazamos toda la ventana
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }, 100); // <-- Ajustable: puedes probar entre 50 y 200 ms
+    });
+  };
+
   // Función que maneja el cambio de página y hace scroll al top
   const handlePageChange = (pageNumber) => {
     if (pageNumber < 1 || pageNumber > totalPages) return;
     onPageChange(pageNumber);
     // Scroll al top del grid de productos
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    scrollToTopAfterRender();
   };
 
   return (

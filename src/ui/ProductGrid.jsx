@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import getParfums from "../functions/getParfums";
 import LoadingSpinner from "./LoadingSpinner";
 import { useOrder } from "../context/OrderContext.jsx";
@@ -15,6 +15,7 @@ export default function ProductGrid() {
   // Estados para la paginacion
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 36;
+  const gridRef = useRef(null);
 
   // Llamada a la API cuando el componente se monta
   useEffect(() => {
@@ -71,6 +72,7 @@ export default function ProductGrid() {
           totalPages={totalPages}
           onPageChange={setCurrentPage}
           maxPageButtons={5}
+          scrollRef={gridRef}
         />
       </div>
     </section>
