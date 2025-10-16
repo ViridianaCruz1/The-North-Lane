@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import getParfums from "../functions/getParfums";
 import LoadingSpinner from "./LoadingSpinner";
+import { useOrder } from "../context/OrderContext.jsx";
+
+//const variableOrder = "casa"; // Valor por defecto
 
 function ProductCard() {
   // Estados para manejar datos, carga y errores
   const [parfums, setParfums] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { order } = useOrder();
 
   // Llamada a la API cuando el componente se monta
   useEffect(() => {
@@ -14,9 +18,10 @@ function ProductCard() {
       try {
         const data = await getParfums();
         // Ordenamos alfabéticamente por nombre
-        const sortedData = data.sort((a, b) => a.casa.localeCompare(b.casa));
-        console.log(sortedData);
-        console.log(data);
+        (order === "nombre" || order === "casa") &&
+          data.sort((a, b) => a[order].localeCompare(b[order]));
+        order === "precio" && data.sort((a, b) => a[order] - b[order]);
+
         setParfums(data); // Guardamos los resultados en el estado
       } catch (err) {
         console.error(err);
@@ -26,7 +31,7 @@ function ProductCard() {
       }
     }
     fetchData();
-  }, []);
+  }, [order]);
 
   // Estado de carga
   if (loading) {

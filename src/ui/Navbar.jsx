@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import FilterMenu from "./FilterMenu";
 import OrdenarPor from "./OrdenarPor";
+import ExternalsNavbar from "./ExternalsNavbar";
 
 export default function Navbar() {
   //   const [category, setCategory] = useState("All categories");
@@ -66,12 +67,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* --- Top Bar --- */}
-      {/* <div className="flex justify-between items-center text-sm text-gray-400 px-6 ">
-        <div className="flex items-center gap-1 cursor-pointer">
-          <span>Ordenar por:</span> <ChevronDown className="w-4 h-4" />
-        </div>
-      </div> */}
+      {/* --- Order by --- */}
       <OrdenarPor />
 
       {/* --- Bottom Navigation --- */}
@@ -79,26 +75,10 @@ export default function Navbar() {
         <FilterMenu />
 
         <ul className="lg:flex hidden flex-wrap gap-6 text-gray-700 font-medium">
-          <li>
-            <a href="#" className="hover:text-[#A47E3B] text-[#2C2C2C]">
-              FAQs
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-[#A47E3B] text-[#2C2C2C]">
-              Best Sellers
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-[#A47E3B] text-[#2C2C2C]">
-              Promociones
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-[#A47E3B] text-[#2C2C2C]">
-              Información
-            </a>
-          </li>
+          <ExternalsNavbar>FAQs</ExternalsNavbar>
+          <ExternalsNavbar>Best Sellers</ExternalsNavbar>
+          <ExternalsNavbar>Promociones</ExternalsNavbar>
+          <ExternalsNavbar>Información</ExternalsNavbar>
         </ul>
       </nav>
     </header>

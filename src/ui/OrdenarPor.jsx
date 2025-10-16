@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { useOrder } from "../context/OrderContext.jsx";
+
+export let variableOrder = "nombre";
 
 function OrdenarPor() {
   const [openOrdenar, setOpenOrdenar] = useState(null);
+  const { order, setOrder } = useOrder();
 
   const toggleOrdenar = (menu) => {
     setOpenOrdenar(openOrdenar === menu ? null : menu);
@@ -15,7 +19,7 @@ function OrdenarPor() {
           onClick={() => toggleOrdenar("menu")}
           className="flex items-center gap-2 text-gray-400 px-4 py-2 rounded-md hover:text-gray-500 transition-colors"
         >
-          Ordenar por:
+          Ordenar por: {order}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={`w-4 h-4 transition-transform duration-300 ${
@@ -40,17 +44,26 @@ function OrdenarPor() {
             className="absolute mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-50
                      max-h-48 overflow-y-auto"
           >
-            <ul className=" text-gray-500 text-xs">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200">
+            <div className=" text-gray-500 text-xs">
+              <div
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
+                onClick={() => setOrder("nombre")}
+              >
                 Nombre (A-Z)
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200">
+              </div>
+              <div
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
+                onClick={() => setOrder("casa")}
+              >
                 Casa (A-Z)
-              </li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200">
+              </div>
+              <div
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
+                onClick={() => setOrder("precio")}
+              >
                 Precio (Menor a Mayor)
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         )}
       </div>

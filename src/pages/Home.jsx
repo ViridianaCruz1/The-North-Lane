@@ -1,5 +1,5 @@
-import Navbar from "./Navbar";
-import ProductGrid from "./ProductGrid";
+import Navbar from "../ui/Navbar";
+import ProductGrid from "../ui/ProductGrid";
 
 function Home() {
   return (
