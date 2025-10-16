@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import getParfums from "../functions/getParfums";
 import LoadingSpinner from "./LoadingSpinner";
 import { useOrder } from "../context/OrderContext.jsx";
+import Pagination from "./Paginacion.jsx";
 
 export default function ProductGrid() {
   // Estados para manejar datos, carga y errores
@@ -65,7 +66,7 @@ export default function ProductGrid() {
           ))}
         </div>
 
-        <div className="flex justify-center mt-6 gap-2">
+        {/* <div className="flex justify-center mt-6 gap-2">
           {pageNumbers.map((number) => (
             <button
               key={number}
@@ -79,7 +80,13 @@ export default function ProductGrid() {
               {number}
             </button>
           ))}
-        </div>
+        </div> */}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          maxPageButtons={5}
+        />
       </div>
     </section>
   );
