@@ -1,43 +1,6 @@
 //const variableOrder = "casa"; // Valor por defecto
 
 function ProductCard({ parfum }) {
-  // // Estados para manejar datos, carga y errores
-  // const [parfums, setParfums] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-  // const { order } = useOrder();
-
-  // // Llamada a la API cuando el componente se monta
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const data = await getParfums();
-  //       // Ordenamos alfabéticamente por nombre
-  //       (order === "nombre" || order === "casa") &&
-  //         data.sort((a, b) => a[order].localeCompare(b[order]));
-  //       order === "precio" && data.sort((a, b) => a[order] - b[order]);
-
-  //       setParfums(data); // Guardamos los resultados en el estado
-  //     } catch (err) {
-  //       console.error(err);
-  //       setError("Error al cargar los perfumes");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  //   fetchData();
-  // }, [order]);
-
-  // // Estado de carga
-  // if (loading) {
-  //   return <LoadingSpinner />;
-  // }
-
-  // // Estado de error
-  // if (error) {
-  //   return <div className="text-center text-red-500 mt-10">{error}</div>;
-  // }
-
   return (
     <div
       key={parfum.id}
@@ -52,7 +15,10 @@ function ProductCard({ parfum }) {
         <h3 className="sm:text-lg text-sm font-semibold text-gray-900 mb-2 2xl:flex-row">
           {parfum.nombre}
         </h3>
-        <p className="text-gray-500 text-xs mb-4">{parfum.casa}</p>
+        <p className="text-gray-500 text-xs mb-4">
+          {parfum.casa}
+          <p className="italic">{parfum.concentracion}</p>
+        </p>
         <div className="border-t border-gray-200 pt-4 flex flex-col justify-between">
           <span className="text-gray-800 text-sm font-semibold">
             Precio: ${parfum.precio}/ml

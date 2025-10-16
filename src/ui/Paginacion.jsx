@@ -3,6 +3,7 @@ export default function Pagination({
   totalPages,
   onPageChange,
   maxPageButtons = 5,
+  scrollRef,
 }) {
   // Calcular el rango de páginas visibles
   let startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
@@ -20,7 +21,12 @@ export default function Pagination({
   const handlePageChange = (pageNumber) => {
     if (pageNumber < 1 || pageNumber > totalPages) return;
     onPageChange(pageNumber);
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll al inicio
+    // Scroll al top del grid de productos
+    if (scrollRef?.current) {
+      scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
