@@ -5,7 +5,7 @@ const OrderContext = createContext();
 
 // 2 Creamos el provider (proveedor del contexto)
 export function OrderProvider({ children }) {
-  const [order, setOrder] = useState("nombre"); // valor inicial
+  const [order, setOrder] = useState("casa"); // valor inicial
 
   return (
     <OrderContext.Provider value={{ order, setOrder }}>

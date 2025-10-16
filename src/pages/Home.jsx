@@ -1,3 +1,5 @@
+import Footer from "../ui/Footer";
+import Header from "../ui/Header";
 import Navbar from "../ui/Navbar";
 import ProductGrid from "../ui/ProductGrid";
 
