@@ -47,19 +47,28 @@ function OrdenarPor() {
             <div className=" text-gray-500 text-xs">
               <div
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
-                onClick={() => setOrder("nombre")}
+                onClick={() => {
+                  setOrder("nombre");
+                  toggleOrdenar(null);
+                }}
               >
                 Nombre (A-Z)
               </div>
               <div
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
-                onClick={() => setOrder("casa")}
+                onClick={() => {
+                  setOrder("casa");
+                  toggleOrdenar(null);
+                }}
               >
                 Casa (A-Z)
               </div>
               <div
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
-                onClick={() => setOrder("precio")}
+                onClick={() => {
+                  setOrder("precio");
+                  toggleOrdenar(null);
+                }}
               >
                 Precio (Menor a Mayor)
               </div>
