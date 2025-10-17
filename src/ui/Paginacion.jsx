@@ -54,7 +54,7 @@ export default function Pagination({
                 ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                 : "bg-white text-gray-800 hover:text-[#A47E3B]"
             }
-        ${currentPage === 1 || totalPages === 1 ? "hidden" : ""}`}
+        ${currentPage === 1 || totalPages <= 1 ? "hidden" : ""}`}
       >
         {"<"}
       </button>
@@ -83,7 +83,7 @@ export default function Pagination({
                 ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                 : "bg-white text-gray-800 hover:text-[#A47E3B]"
             }
-        ${currentPage === endPage || totalPages === 1 ? "hidden" : ""}`}
+        ${currentPage === endPage || totalPages <= 1 ? "hidden" : ""}`}
       >
         {">"}
       </button>

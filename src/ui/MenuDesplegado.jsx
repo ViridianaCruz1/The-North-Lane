@@ -1,6 +1,13 @@
 import { Menu, ChevronDown } from "lucide-react";
 
-function MenuDesplegado({ toggleMenu, menuType, buttonName, openMenu, array }) {
+function MenuDesplegado({
+  toggleMenu,
+  menuType,
+  buttonName,
+  openMenu,
+  array,
+  onSelectItem,
+}) {
   return (
     <div className="relative">
       <button
@@ -19,9 +26,10 @@ function MenuDesplegado({ toggleMenu, menuType, buttonName, openMenu, array }) {
       {openMenu === menuType && (
         <div className="absolute mt-2 bg-white shadow-lg rounded-md border border-gray-200 w-40 sm:w-48 z-20 max-h-64 overflow-y-auto">
           {array.length > 0 ? (
-            array.map((item) => (
+            array.map((item, index) => (
               <div
-                key={item.id}
+                key={index}
+                onClick={() => onSelectItem(item)}
                 className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer border-t border-gray-100"
               >
                 {item}

@@ -11,6 +11,7 @@ export default function ProductGrid({
   selectedCategoria,
 }) {
   // Estados para manejar datos, carga y errores
+  const [parfums, setParfums] = useState([]);
   const [allParfums, setAllParfums] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,7 +28,12 @@ export default function ProductGrid({
       try {
         const data = await getParfums();
         // Ordenamos alfabéticamente por nombre
-        setAllParfums(data);
+        (order === "nombre" || order === "casa") &&
+          data.sort((a, b) => a[order].localeCompare(b[order]));
+        order === "precio" && data.sort((a, b) => a[order] - b[order]);
+
+        setParfums(data); // Guardamos los resultados en el estado
+        setCurrentPage(1); // Reseteamos la pagina actual al cambiar el orden
       } catch (err) {
         console.error(err);
         setError("Error al cargar los perfumes");
@@ -36,36 +42,29 @@ export default function ProductGrid({
       }
     }
     fetchData();
-  }, []);
-
-  // Filtrado y ordenamiento dinámico
-  const filteredParfums = useMemo(() => {
-    if (!allParfums || allParfums.length === 0) return [];
-
-    return allParfums
-      .filter((p) => {
-        const casaMatch =
-          !selectedCasa || p.casa?.toLowerCase() === selectedCasa.toLowerCase();
-        const ocasionMatch =
-          !selectedOcasion ||
-          p.nombre?.toLowerCase() === selectedOcasion.toLowerCase();
-        const categoriaMatch =
-          !selectedCategoria ||
-          p.categoria?.toLowerCase() === selectedCategoria.toLowerCase();
-        return casaMatch && ocasionMatch && categoriaMatch;
-      })
-      .sort((a, b) => {
-        if (order === "nombre" || order === "casa")
-          return a[order].localeCompare(b[order]);
-        if (order === "precio") return a[order] - b[order];
-        return 0;
-      });
-  }, [allParfums, selectedCasa, selectedOcasion, selectedCategoria, order]);
+  }, [order]);
 
   // Reiniciar la página al cambiar filtros
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedCasa, selectedOcasion, selectedCategoria]);
+
+  // FILTRADO DINAMICO
+  const filteredParfums = useMemo(() => {
+    return parfums.filter((parfum) => {
+      const matchCasa =
+        !selectedCasa ||
+        parfum.casa?.toLowerCase() === selectedCasa.toLowerCase();
+      const matchOcasion =
+        !selectedOcasion ||
+        parfum.nombre?.toLowerCase() === selectedOcasion.toLowerCase();
+      const matchCategoria =
+        !selectedCategoria ||
+        parfum.categoria?.toLowerCase() === selectedCategoria.toLowerCase();
+      // Solo mantener los que cumplan todos los criterios activos
+      return matchCasa && matchOcasion && matchCategoria;
+    });
+  }, [parfums, selectedCasa, selectedOcasion, selectedCategoria]);
 
   // Reiniciar página cuando cambian los filtros
   useEffect(() => {
