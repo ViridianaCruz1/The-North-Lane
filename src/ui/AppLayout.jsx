@@ -1,13 +1,15 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 
 function AppLayout() {
+  const [searchResult, setSearchResult] = useState(null);
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <Header />
+      <Header onSearchResult={setSearchResult} />
       <main className="flex-1 content-center">
-        <Outlet />
+        <Outlet context={{ searchResult }} />
       </main>
       <Footer />
     </div>

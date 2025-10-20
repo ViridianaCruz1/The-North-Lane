@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Navbar from "../ui/Navbar";
 import ProductGrid from "../ui/ProductGrid";
+import { useOutletContext } from "react-router-dom";
 
 function Home() {
+  const { searchResult } = useOutletContext();
+
   const [selectedCasa, setSelectedCasa] = useState(null);
   const [selectedOcasion, setSelectedOcasion] = useState(null);
   const [selectedCategoria, setSelectedCategoria] = useState(null);
@@ -42,6 +45,7 @@ function Home() {
         selectedOcasion={selectedOcasion}
         selectedCategoria={selectedCategoria}
         onSelectLimpiar={handleSelectLimpiar}
+        searchResult={searchResult}
       />
     </div>
   );

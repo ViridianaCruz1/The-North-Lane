@@ -10,6 +10,7 @@ export default function ProductGrid({
   selectedOcasion,
   selectedCategoria,
   onSelectLimpiar,
+  searchResult,
 }) {
   // Estados para manejar datos, carga y errores
   const [allParfums, setAllParfums] = useState([]);
@@ -43,6 +44,12 @@ export default function ProductGrid({
   const filteredParfums = useMemo(() => {
     if (!allParfums || allParfums.length === 0) return [];
 
+    if (searchResult && searchResult.nombre) {
+      return allParfums.filter(
+        (p) => p.nombre.toLowerCase() === searchResult.nombre.toLowerCase()
+      );
+    }
+
     return allParfums
       .filter((p) => {
         const casaMatch =
@@ -61,7 +68,14 @@ export default function ProductGrid({
         if (order === "precio") return a[order] - b[order];
         return 0;
       });
-  }, [allParfums, selectedCasa, selectedOcasion, selectedCategoria, order]);
+  }, [
+    allParfums,
+    selectedCasa,
+    selectedOcasion,
+    selectedCategoria,
+    order,
+    searchResult,
+  ]);
 
   // Reiniciar la página al cambiar filtros
   useEffect(() => {
@@ -114,7 +128,7 @@ export default function ProductGrid({
             No hay perfumes que coincidan con los filtros seleccionados.
           </p>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-8 md:gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-3 md:gap-8">
             {currentParfums.map((parfum) => (
               <ProductCard key={parfum.id} parfum={parfum} />
             ))}

@@ -1,5 +1,4 @@
 import {
-  Search,
   Heart,
   ShoppingCart,
   User,
@@ -8,8 +7,9 @@ import {
   Menu,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
-function Header() {
+function Header({ onSearchResult }) {
   return (
     <header className="w-full border-b border-gray-200 bg-gray-200">
       {/* --- Middle Section: Logo + Search + Icons --- */}
@@ -24,19 +24,10 @@ function Header() {
         </Link>
 
         {/* Search Bar */}
-        <div className="flex items-center w-full sm:w-[500px] my-3 sm:mt-0">
-          <input
-            type="text"
-            placeholder="Buscar"
-            className="w-full px-4 py-2 focus:outline-none text-sm h-10 rounded-l-md"
-          />
-          <button className="bg-[#A47E3B] hover:bg-[#D4AF7A] text-white px-4 py-2 rounded-r-md flex items-center justify-center h-10 ">
-            <Search size={18} className="text-white" />
-          </button>
-        </div>
+        <SearchBar onSearchResult={onSearchResult} />
 
         {/* Right Icons */}
-        <div className="hidden lg:flex  items-center gap-6 text-[#F5F5F5] mt-3 sm:mt-0">
+        {/* <div className="hidden lg:flex  items-center gap-6 text-[#F5F5F5] mt-3 sm:mt-0">
           <div className="flex items-center gap-2">
             <Phone className="w-5 h-5 text-[#A47E3B]" />
             <div>
@@ -59,7 +50,7 @@ function Header() {
               1
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </header>
   );

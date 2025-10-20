@@ -15,10 +15,10 @@ function ProductCard({ parfum }) {
         <h3 className="sm:text-lg text-sm font-semibold text-gray-900 mb-2 2xl:flex-row">
           {parfum.nombre}
         </h3>
-        <p className="text-gray-500 text-xs mb-4">
+        <div className="text-gray-500 text-xs mb-4">
           {parfum.casa}
           <p className="italic">{parfum.concentracion}</p>
-        </p>
+        </div>
         <div className="border-t border-gray-200 pt-4 flex flex-col justify-between">
           <span className="text-gray-800 text-sm font-semibold">
             Precio: ${parfum.precio}/ml

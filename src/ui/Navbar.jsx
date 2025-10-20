@@ -1,6 +1,7 @@
 import FilterMenu from "./FilterMenu";
 import OrdenarPor from "./OrdenarPor";
 import ExternalsNavbar from "./ExternalsNavbar";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar({
   onSelectCasa,
@@ -23,9 +24,15 @@ export default function Navbar({
         />
 
         <ul className="lg:flex hidden flex-wrap gap-6 text-gray-700 font-medium">
-          <ExternalsNavbar>FAQs</ExternalsNavbar>
-          <ExternalsNavbar>Best Sellers</ExternalsNavbar>
-          <ExternalsNavbar>Promociones</ExternalsNavbar>
+          <NavLink to="/faqs">
+            <ExternalsNavbar>FAQs</ExternalsNavbar>
+          </NavLink>
+          <NavLink to="/best-sellers">
+            <ExternalsNavbar>Best Sellers</ExternalsNavbar>
+          </NavLink>
+          <NavLink to="/promociones">
+            <ExternalsNavbar>Promociones</ExternalsNavbar>
+          </NavLink>
         </ul>
       </nav>
     </div>

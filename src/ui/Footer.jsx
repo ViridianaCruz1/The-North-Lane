@@ -38,14 +38,18 @@ function Footer() {
             <h3 className="font-semibold text-gray-900 mb-3">Síguenos en</h3>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://wa.me/2212034647"
                 className="p-2 bg-white shadow rounded-full hover:bg-[#A47E3B] hover:text-white transition"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <FaWhatsapp size={18} />
               </a>
               <a
-                href="#"
+                href="https://www.tiktok.com/@perfumes_de_diego?_t=ZS-90bXO0qbime&_r=1"
                 className="p-2 bg-white shadow rounded-full hover:bg-[#A47E3B] hover:text-white transition"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <FaTiktok size={18} />
               </a>
