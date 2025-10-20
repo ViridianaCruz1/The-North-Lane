@@ -31,6 +31,7 @@ function SearchBar({ onSearchResult }) {
     if (query.trim() === "") {
       setSuggestions([]);
       setShowSuggestions(false);
+      onSearchResult(parfums);
       return;
     }
 
@@ -51,7 +52,7 @@ function SearchBar({ onSearchResult }) {
     // Mostrar máximo 5 sugerencias
     setSuggestions(orderedSuggestions.slice(0, 5));
     setShowSuggestions(true);
-  }, [query, parfums]);
+  }, [query, parfums, onSearchResult]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
