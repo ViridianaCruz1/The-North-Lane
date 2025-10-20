@@ -63,9 +63,27 @@ export default function ProductGrid({
         return casaMatch && ocasionMatch && categoriaMatch;
       })
       .sort((a, b) => {
-        if (order === "nombre" || order === "casa")
-          return a[order].localeCompare(b[order]);
-        if (order === "precio") return a[order] - b[order];
+        // if (order === "nombre" || order === "casa")
+        //   return a[order].localeCompare(b[order]);
+        // if (order === "precio") return a[order] - b[order];
+        // return 0;
+        if (order === "nombre") {
+          return a.nombre.localeCompare(b.nombre);
+        }
+
+        if (order === "casa") {
+          // Primero comparo casas
+          const casaComparison = a.casa.localeCompare(b.casa);
+          if (casaComparison !== 0) return casaComparison;
+
+          // Si las casas son iguales, comparo precio
+          return a.precio - b.precio;
+        }
+
+        if (order === "precio") {
+          return a.precio - b.precio;
+        }
+
         return 0;
       });
   }, [
