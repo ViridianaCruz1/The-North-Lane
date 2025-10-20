@@ -6,6 +6,7 @@ export default function Navbar({
   onSelectCasa,
   onSelectOcasion,
   onSelectCategoria,
+  onSelectLimpiar,
 }) {
   return (
     <div className="bg-gray-200">
@@ -18,6 +19,7 @@ export default function Navbar({
           onSelectCasa={onSelectCasa}
           onSelectOcasion={onSelectOcasion}
           onSelectCategoria={onSelectCategoria}
+          onSelectLimpiar={onSelectLimpiar}
         />
 
         <ul className="lg:flex hidden flex-wrap gap-6 text-gray-700 font-medium">

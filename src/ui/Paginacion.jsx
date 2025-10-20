@@ -50,11 +50,11 @@ export default function Pagination({
         onClick={() => handlePageChange(currentPage - 1)}
         className={`px-3 py-1 bg-transparent 
             ${
-              currentPage === 1
-                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-white text-gray-800 hover:text-[#A47E3B]"
+              currentPage === totalPages
+                ? " text-gray-400 cursor-not-allowed"
+                : " text-gray-800 hover:text-[#A47E3B]"
             }
-        ${currentPage === 1 || totalPages <= 1 ? "hidden" : ""}`}
+        ${currentPage === startPage || totalPages <= 1 ? "hidden" : ""}`}
       >
         {"<"}
       </button>
@@ -65,9 +65,11 @@ export default function Pagination({
           key={number}
           onClick={() => handlePageChange(number)}
           className={`px-3 py-1 rounded-md ${
-            currentPage === number
+            totalPages === 1
+              ? "hidden"
+              : currentPage === number
               ? "bg-[#A47E3B] text-white"
-              : "bg-white text-gray-800 hover:bg-gray-200"
+              : " text-gray-800 hover:bg-gray-200"
           }`}
         >
           {number}
@@ -80,8 +82,8 @@ export default function Pagination({
         className={`px-3 py-1 bg-transparent 
             ${
               currentPage === totalPages
-                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-white text-gray-800 hover:text-[#A47E3B]"
+                ? " text-gray-400 cursor-not-allowed"
+                : "e text-gray-800 hover:text-[#A47E3B]"
             }
         ${currentPage === endPage || totalPages <= 1 ? "hidden" : ""}`}
       >

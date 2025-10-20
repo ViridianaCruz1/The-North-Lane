@@ -35,29 +35,17 @@ function Footer() {
           </ul>
 
           <div>
-            <h3 className="font-semibold text-gray-900 mb-3">Follow Us On</h3>
+            <h3 className="font-semibold text-gray-900 mb-3">Síguenos en</h3>
             <div className="flex space-x-4">
               <a
                 href="#"
-                className="p-2 bg-white shadow rounded-full hover:bg-blue-600 hover:text-white transition"
-              >
-                <Facebook size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-white shadow rounded-full hover:bg-blue-400 hover:text-white transition"
-              >
-                <FaFacebookMessenger size={18} />
-              </a>
-              <a
-                href="#"
-                className="p-2 bg-white shadow rounded-full hover:bg-red-500 hover:text-white transition"
+                className="p-2 bg-white shadow rounded-full hover:bg-[#A47E3B] hover:text-white transition"
               >
                 <FaWhatsapp size={18} />
               </a>
               <a
                 href="#"
-                className="p-2 bg-white shadow rounded-full hover:bg-blue-700 hover:text-white transition"
+                className="p-2 bg-white shadow rounded-full hover:bg-[#A47E3B] hover:text-white transition"
               >
                 <FaTiktok size={18} />
               </a>
@@ -67,8 +55,8 @@ function Footer() {
       </div>
 
       {/* Línea inferior */}
-      <div className="mt-10 border-t pt-6 text-center text-sm text-gray-500">
-        © 2025 TailGrids. All rights reserved.
+      <div className="mt-10 border-t pt-6 text-center text-xs text-gray-500 italic">
+        © 2025 Perfumes de Diego. Todos los derechos reservados.
       </div>
     </footer>
   );

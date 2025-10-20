@@ -9,6 +9,7 @@ export default function ProductGrid({
   selectedCasa,
   selectedOcasion,
   selectedCategoria,
+  onSelectLimpiar,
 }) {
   // Estados para manejar datos, carga y errores
   const [allParfums, setAllParfums] = useState([]);
@@ -97,11 +98,17 @@ export default function ProductGrid({
   return (
     <section className="bg-gray-50 py-12">
       <div className="max-w-12xl mx-auto sm:mx-8 lg:mx-12 px-6">
-        {/* <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-8 md:gap-3">
-          {currentParfums.map((parfum) => (
-            <ProductCard key={parfum.id} parfum={parfum} />
-          ))}
-        </div> */}
+        {/* Botón Limpiar filtros */}
+        {(selectedCasa || selectedOcasion || selectedCategoria) && (
+          <div className="mb-4 text-right">
+            <button
+              onClick={onSelectLimpiar}
+              className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition-colors"
+            >
+              Limpiar filtros
+            </button>
+          </div>
+        )}
         {filteredParfums.length === 0 ? (
           <p className="text-center text-gray-500 mt-8">
             No hay perfumes que coincidan con los filtros seleccionados.

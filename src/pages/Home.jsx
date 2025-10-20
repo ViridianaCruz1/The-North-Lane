@@ -24,6 +24,11 @@ function Home() {
     setSelectedCasa(null); // limpiar otros filtros
     setSelectedOcasion(null);
   };
+  const handleSelectLimpiar = () => {
+    setSelectedCategoria(null);
+    setSelectedCasa(null); // limpiar otros filtros
+    setSelectedOcasion(null);
+  };
 
   return (
     <div>
@@ -36,6 +41,7 @@ function Home() {
         selectedCasa={selectedCasa}
         selectedOcasion={selectedOcasion}
         selectedCategoria={selectedCategoria}
+        onSelectLimpiar={handleSelectLimpiar}
       />
     </div>
   );
