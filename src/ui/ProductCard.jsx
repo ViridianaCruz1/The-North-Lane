@@ -1,9 +1,24 @@
-//const variableOrder = "casa"; // Valor por defecto
+import { useNavigate } from "react-router-dom";
 
 function ProductCard({ parfum }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    // Convertir el nombre a formato URL-friendly
+    const nombreURL = parfum.nombre
+      .toLowerCase()
+      .normalize("NFD") // elimina acentos
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "-") // reemplaza espacios por guiones
+      .replace(/[^\w-]+/g, ""); // elimina caracteres especiales
+
+    navigate(`/product/${nombreURL}/${parfum.id}`);
+  };
+
   return (
     <div
       key={parfum.id}
+      onClick={handleCardClick}
       className={`bg-white relative shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300
         ${parfum.disponible === "Agotado" ? "shadow-red-600" : ""}
       ${parfum.disponible === "Próximamente" ? "shadow-yellow-600" : ""}`}

@@ -79,6 +79,9 @@ export default function ProductGrid({
         if (order === "precio") {
           return a.precio - b.precio;
         }
+        if (order === "precioMayor") {
+          return b.precio - a.precio;
+        }
 
         return 0;
       });

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import WhatsAppFlotante from "./WhatsAppFlotante";
 
 function AppLayout() {
   const [searchResult, setSearchResult] = useState(null);
@@ -12,6 +13,7 @@ function AppLayout() {
         <Outlet context={{ searchResult }} />
       </main>
       <Footer />
+      <WhatsAppFlotante />
     </div>
   );
 }

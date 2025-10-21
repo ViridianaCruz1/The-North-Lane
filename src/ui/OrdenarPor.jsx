@@ -19,7 +19,16 @@ function OrdenarPor() {
           onClick={() => toggleOrdenar("menu")}
           className="flex items-center gap-2 text-gray-400 px-4 py-2 rounded-md hover:text-gray-500 transition-colors"
         >
-          Ordenar por: {order}
+          Ordenar por:{" "}
+          {order === "nombre"
+            ? "Nombre (A-Z)"
+            : order === "casa"
+            ? "Casa (A-Z)"
+            : order === "precio"
+            ? "Precio (Menor a Mayor)"
+            : order === "precioMayor"
+            ? "Precio (Mayor a Menor)"
+            : ""}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={`w-4 h-4 transition-transform duration-300 ${
@@ -71,6 +80,15 @@ function OrdenarPor() {
                 }}
               >
                 Precio (Menor a Mayor)
+              </div>
+              <div
+                className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
+                onClick={() => {
+                  setOrder("precioMayor");
+                  toggleOrdenar(null);
+                }}
+              >
+                Precio (Mayor a Menor)
               </div>
             </div>
           </div>
