@@ -38,8 +38,10 @@ function SearchBar({ onSearchResult }) {
     const lowerQuery = query.toLowerCase();
     // Separar en dos grupos:
     // 1️⃣ los que empiezan con el texto
-    const startsWithMatches = parfums.filter((p) =>
-      p.nombre.toLowerCase().startsWith(lowerQuery)
+    const startsWithMatches = parfums.filter(
+      (p) =>
+        p.nombre.toLowerCase().startsWith(lowerQuery) ||
+        p.casa.toLowerCase().startsWith(lowerQuery)
     );
     // 2️⃣ los que contienen el texto pero no empiezan con él
     const containsMatches = parfums.filter(

@@ -22,7 +22,7 @@ export default function FilterMenu({
       const { data: casasData } = await supabase.from("parfums").select("casa");
       const { data: ocasionesData } = await supabase
         .from("parfums")
-        .select("nombre");
+        .select("disponible");
       const { data: categoriasData } = await supabase
         .from("parfums")
         .select("categoria");
@@ -39,7 +39,7 @@ export default function FilterMenu({
     (a, b) => a.localeCompare(b)
   );
   const ocasionesUnicas = [
-    ...new Set(ocasiones.map((item) => item.nombre)),
+    ...new Set(ocasiones.map((item) => item.disponible)),
   ].sort((a, b) => a.localeCompare(b));
   const categoriasUnicas = [
     ...new Set(categorias.map((item) => item.categoria)),
@@ -80,7 +80,7 @@ export default function FilterMenu({
       <MenuDesplegado
         menuType="ocasion"
         toggleMenu={toggleMenu}
-        buttonName="Ocasión"
+        buttonName="Disponible"
         openMenu={openMenu}
         array={ocasionesUnicas}
         onSelectItem={handleSelectOcasion}

@@ -22,6 +22,18 @@ export default function Navbar({
           onSelectCategoria={onSelectCategoria}
           onSelectLimpiar={onSelectLimpiar}
         />
+
+        <ul className="lg:flex hidden flex-wrap gap-6 text-gray-700 font-medium">
+          <NavLink to="/faqs">
+            <ExternalsNavbar>FAQs</ExternalsNavbar>
+          </NavLink>
+          <NavLink to="/best-sellers">
+            <ExternalsNavbar>Best Sellers</ExternalsNavbar>
+          </NavLink>
+          <NavLink to="/promociones">
+            <ExternalsNavbar>Promociones</ExternalsNavbar>
+          </NavLink>
+        </ul>
       </nav>
     </div>
   );

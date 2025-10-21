@@ -4,8 +4,21 @@ function ProductCard({ parfum }) {
   return (
     <div
       key={parfum.id}
-      className="bg-white shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300"
+      className={`bg-white relative shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300
+        ${parfum.disponible === "Agotado" ? "shadow-red-600" : ""}
+      ${parfum.disponible === "Próximamente" ? "shadow-yellow-600" : ""}`}
     >
+      <span
+        className={`absolute top-2 right-2 text-white text-xs sm:text-sm font-semibold px-3 py-1 rounded-md  ${
+          parfum.disponible === "Agotado" ? "bg-red-600" : ""
+        }
+      ${parfum.disponible === "Próximamente" ? "bg-yellow-500" : ""} ${
+          parfum.disponible === "Disponible" ? "hidden" : ""
+        }`}
+      >
+        {parfum.disponible === "Disponible" ? "" : parfum.disponible}
+      </span>
+
       <img
         src={parfum.image}
         alt={parfum.nombre}

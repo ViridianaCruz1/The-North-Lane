@@ -56,17 +56,13 @@ export default function ProductGrid({
           !selectedCasa || p.casa?.toLowerCase() === selectedCasa.toLowerCase();
         const ocasionMatch =
           !selectedOcasion ||
-          p.nombre?.toLowerCase() === selectedOcasion.toLowerCase();
+          p.disponible?.toLowerCase() === selectedOcasion.toLowerCase();
         const categoriaMatch =
           !selectedCategoria ||
           p.categoria?.toLowerCase() === selectedCategoria.toLowerCase();
         return casaMatch && ocasionMatch && categoriaMatch;
       })
       .sort((a, b) => {
-        // if (order === "nombre" || order === "casa")
-        //   return a[order].localeCompare(b[order]);
-        // if (order === "precio") return a[order] - b[order];
-        // return 0;
         if (order === "nombre") {
           return a.nombre.localeCompare(b.nombre);
         }

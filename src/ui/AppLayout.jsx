@@ -8,7 +8,7 @@ function AppLayout() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Header onSearchResult={setSearchResult} />
-      <main className="flex-1 content-center">
+      <main className="flex-1">
         <Outlet context={{ searchResult }} />
       </main>
       <Footer />

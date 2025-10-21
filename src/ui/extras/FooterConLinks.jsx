@@ -1,5 +1,6 @@
-import { Phone } from "lucide-react";
-import { FaTiktok, FaWhatsapp } from "react-icons/fa";
+import { Facebook, Twitter, Youtube, Linkedin, Phone } from "lucide-react";
+import { FaTiktok, FaWhatsapp, FaFacebookMessenger } from "react-icons/fa";
+import NavLinkFooter from "./NavLinkFooter";
 
 function Footer() {
   return (
@@ -26,6 +27,13 @@ function Footer() {
 
         {/* Enlaces rápidos y redes */}
         <div>
+          <h3 className="font-semibold text-gray-900 mb-4">Enlaces rápidos</h3>
+          <ul className="space-y-2 text-sm mb-6">
+            <NavLinkFooter to="/faqs">FAQs</NavLinkFooter>
+            <NavLinkFooter to="/best-sellers">Best Sellers</NavLinkFooter>
+            <NavLinkFooter to="/promociones">Promociones</NavLinkFooter>
+          </ul>
+
           <div>
             <h3 className="font-semibold text-gray-900 mb-3">Síguenos en</h3>
             <div className="flex space-x-4">
