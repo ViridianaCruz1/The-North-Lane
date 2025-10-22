@@ -21,7 +21,7 @@ Gracias!`;
         className="w-full bg-[#A47E3B] hover:bg-[#D4AF7A] text-white py-2 rounded-md font-medium"
         disabled={cartItems.length === 0}
       >
-        Checkout
+        Realizar pedido
       </button>
     </a>
   );

@@ -202,6 +202,7 @@ export default function ShoppingCart() {
             >
               <Checkout
                 totalCartPrice={totalCartPrice}
+                postalCode={postalCode}
                 disabled={!isPostalCodeValid}
               />
             </div>
