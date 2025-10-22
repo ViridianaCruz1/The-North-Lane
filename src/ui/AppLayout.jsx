@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import WhatsAppFlotante from "./WhatsAppFlotante";
+import ShoppingCart from "./ShoppingCart";
 
 function AppLayout() {
   const [searchResult, setSearchResult] = useState(null);
@@ -12,6 +13,7 @@ function AppLayout() {
       <main className="flex-1">
         <Outlet context={{ searchResult }} />
       </main>
+      <ShoppingCart />
       <Footer />
       <WhatsAppFlotante />
     </div>

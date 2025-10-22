@@ -12,12 +12,12 @@ function OrdenarPor() {
   };
 
   return (
-    <div className="flex justify-end items-center text-sm text-gray-400 px-6">
+    <div className="flex justify-end items-center text-sm text-gray-400 sm:px-6 px-2">
       {/* Botón principal */}
       <div className="relative">
         <button
           onClick={() => toggleOrdenar("menu")}
-          className="flex items-center gap-2 text-gray-400 px-4 py-2 rounded-md hover:text-gray-500 transition-colors"
+          className="flex items-center gap-2 text-gray-400 sm:px-4 px-2 py-2 rounded-md hover:text-gray-500 transition-colors"
         >
           Ordenar por:{" "}
           {order === "nombre"

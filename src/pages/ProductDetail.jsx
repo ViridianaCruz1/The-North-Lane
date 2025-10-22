@@ -4,6 +4,7 @@ import { ShoppingCart, CreditCard, ArrowLeft } from "lucide-react";
 import getParfums from "../functions/getParfums";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import SelectMililitros from "../ui/SelectMililitros";
+import { useCart } from "../context/CartContext";
 
 export default function ProductDetail() {
   const { id } = useParams(); // ahora obtenemos ambos
@@ -12,6 +13,7 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [mililitros, setMililitros] = useState(1);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     async function fetchParfum() {
@@ -47,19 +49,32 @@ export default function ProductDetail() {
       </div>
     );
 
+  const handleAddToCart = () => {
+    const product = {
+      id: parfum.id,
+      nombre: parfum.nombre,
+      precio: parfum.precio,
+      disponible: parfum.disponible,
+      mililitros,
+      image: parfum.image,
+      totalPrice: parfum.precio * mililitros,
+    };
+    addToCart(product);
+  };
+
   return (
     <>
       <div className="flex flex-col lg:flex-row gap-10 bg-white p-6 rounded-2xl shadow-md max-w-6xl mx-auto my-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                navigate(-1);
+                setMililitros(1);
+              }}
               className="text-sm text-gray-600 mb-4 hover:text-gray-900 flex"
             >
               <ArrowLeft size={24} />
-              {/* <span className="text-sm font-medium pl-3">
-                Regresar al catálogo
-              </span> */}
             </button>
             <img
               src={parfum.image}
@@ -127,7 +142,10 @@ export default function ProductDetail() {
               </div>
 
               <div className="mt-6 flex gap-4">
-                <button className="flex items-center gap-2 bg-[#A47E3B] text-white px-5 py-2 rounded-lg hover:bg-[#D4AF7A] text-sm ">
+                <button
+                  onClick={handleAddToCart}
+                  className="flex items-center gap-2 bg-[#A47E3B] text-white px-5 py-2 rounded-lg hover:bg-[#D4AF7A] text-sm"
+                >
                   <ShoppingCart size={18} />
                   Añadir al carrito
                 </button>
