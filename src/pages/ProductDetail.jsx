@@ -63,7 +63,7 @@ export default function ProductDetail() {
             <img
               src={parfum.image}
               alt={parfum.nombre}
-              className="rounded-xl w-full object-cover"
+              className="max-h-60 sm:max-h-full mx-auto rounded-xl object-contain"
             />
           </div>
 
