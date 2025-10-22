@@ -149,40 +149,46 @@ export default function ShoppingCart() {
         </div>
 
         <div className="flex flex-col h-[calc(100%-70px)] overflow-y-auto">
-          <div className="border-b p-3 text-sm text-gray-600 italic">
-            El costo de envío se calcula al momento de realizar tu pago
-          </div>
+          <div className={`${cartItems.length === 0 ? "hidden" : ""}`}>
+            <div className="border-b p-3 text-sm text-gray-600 italic">
+              El costo de envío se calcula al momento de realizar tu pago
+            </div>
 
-          {/* Campo de código postal */}
-          <div className="border-b p-4 flex flex-col gap-2">
-            <label
-              htmlFor="postalCode"
-              className="text-sm font-medium text-gray-700"
-            >
-              Ingresa tu código postal:
-            </label>
-            <input
-              id="postalCode"
-              type="text"
-              value={postalCode}
-              onChange={handlePostalCodeChange}
-              placeholder="Ej. 12345"
-              className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#A47E3B] focus:outline-none"
-              inputMode="numeric"
-              maxLength={5}
-            />
-            {postalCode.length > 0 && postalCode.length < 5 && (
-              <p className="text-xs text-red-500">
-                El código postal debe tener 5 dígitos.
-              </p>
-            )}
+            {/* Campo de código postal */}
+            <div className="border-b p-4 flex flex-col gap-2">
+              <label
+                htmlFor="postalCode"
+                className="text-sm font-medium text-gray-700"
+              >
+                Ingresa tu código postal:
+              </label>
+              <input
+                id="postalCode"
+                type="text"
+                value={postalCode}
+                onChange={handlePostalCodeChange}
+                placeholder="Ej. 12345"
+                className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#A47E3B] focus:outline-none"
+                inputMode="numeric"
+                maxLength={5}
+              />
+              {postalCode.length > 0 && postalCode.length < 5 && (
+                <p className="text-xs text-red-500">
+                  El código postal debe tener 5 dígitos.
+                </p>
+              )}
+            </div>
           </div>
 
           {/* Lista de productos */}
           <ShoppingCartProduct />
 
           {/* Subtotal y botón */}
-          <div className="border-t px-6 py-4 mt-auto">
+          <div
+            className={`border-t px-6 py-4 mt-auto ${
+              cartItems.length === 0 ? "hidden" : ""
+            }`}
+          >
             <div className="flex justify-between text-gray-700 mb-3">
               <span className="font-medium">Subtotal:</span>
               <span className="font-semibold">${totalCartPrice}</span>
