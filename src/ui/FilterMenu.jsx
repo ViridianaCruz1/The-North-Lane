@@ -46,8 +46,11 @@ export default function FilterMenu({
   ].sort((a, b) => a.localeCompare(b));
 
   // Función para alternar menús
+  // const toggleMenu = (menu) => {
+  //   setOpenMenu(openMenu === menu ? null : menu);
+  // };
   const toggleMenu = (menu) => {
-    setOpenMenu(openMenu === menu ? null : menu);
+    setOpenMenu((prevOpenMenu) => (prevOpenMenu === menu ? null : menu));
   };
 
   // Nueva función: cuando se selecciona una CASA - OCASION (NOMBRE) - CATEGORIA
@@ -84,6 +87,7 @@ export default function FilterMenu({
         openMenu={openMenu}
         array={ocasionesUnicas}
         onSelectItem={handleSelectOcasion}
+        prioridad={{ Disponible: 1, Próximamente: 2, Agotado: 3 }}
       />
 
       {/* Botón categoria */}
@@ -94,6 +98,7 @@ export default function FilterMenu({
         openMenu={openMenu}
         array={categoriasUnicas}
         onSelectItem={handleSelectCategoria}
+        prioridad={{ Nicho: 1, Diseñador: 2, Árabe: 3 }}
       />
     </div>
   );

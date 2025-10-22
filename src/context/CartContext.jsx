@@ -13,13 +13,34 @@ export function CartProvider({ children }) {
       if (existing) {
         return prev.map((item) =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + product.quantity }
+            ? {
+                ...item,
+                mililitros: item.mililitros + product.mililitros,
+                totalPrice:
+                  (item.mililitros + product.mililitros) *
+                  (item.totalPrice / item.mililitros), // recalcular proporcionalmente
+              }
             : item
         );
       }
       return [...prev, product];
     });
     // setIsCartOpen(true); // abrir el carrito al agregar algo
+  };
+
+  // ✏️ Actualizar cantidad (mililitros) y total
+  const updateCartItem = (id, newMililitros) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              mililitros: newMililitros,
+              totalPrice: newMililitros * (item.totalPrice / item.mililitros), // mantener proporción de precio
+            }
+          : item
+      )
+    );
   };
 
   // 🗑️ Eliminar producto
@@ -32,12 +53,6 @@ export function CartProvider({ children }) {
   const closeCart = () => setIsCartOpen(false);
   const toggleCart = () => setIsCartOpen((prev) => !prev);
 
-  // 🧾 Subtotal calculado automáticamente
-  const subtotal = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
-
   return (
     <CartContext.Provider
       value={{
@@ -48,7 +63,7 @@ export function CartProvider({ children }) {
         openCart,
         closeCart,
         toggleCart,
-        subtotal,
+        updateCartItem,
       }}
     >
       {children}

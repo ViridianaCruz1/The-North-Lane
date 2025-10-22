@@ -1,7 +1,21 @@
-import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useState } from "react";
+
 function ShoppingCartProduct() {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems, removeFromCart, updateCartItem } = useCart();
+  const [editingItem, setEditingItem] = useState(null);
+
+  const handleIncrease = (item) => {
+    updateCartItem(item.id, item.mililitros + 1);
+  };
+
+  const handleDecrease = (item) => {
+    if (item.mililitros > 1) {
+      // evita que sea 0 o negativo
+      updateCartItem(item.id, item.mililitros - 1);
+    }
+  };
+
   return (
     <div className="flex-1 overflow-y-auto p-6 space-y-6">
       {cartItems.length === 0 ? (
@@ -22,23 +36,45 @@ function ShoppingCartProduct() {
                 Cantidad: {item.mililitros} ml
               </p>
               <p className="text-gray-900 font-semibold">${item.totalPrice}</p>
-              <div className="flex gap-2 mt-2">
-                <Link
-                  to={`/product/${item.nombre
-                    .toLowerCase()
-                    .replace(/\s+/g, "-")}/${item.id}`}
-                >
-                  <button className="text-xs px-2 py-1 border rounded-md hover:bg-gray-100">
+
+              {editingItem === item.id ? (
+                <div className="flex gap-2 mt-2">
+                  <button
+                    onClick={() => handleDecrease(item)}
+                    className="text-xs px-2 py-1 border rounded-md hover:bg-gray-100"
+                  >
+                    -
+                  </button>
+                  <p className="text-gray-500 text-sm">{item.mililitros} ml</p>
+                  <button
+                    onClick={() => handleIncrease(item)}
+                    className="text-xs px-2 py-1 border rounded-md hover:bg-gray-100"
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => setEditingItem(null)}
+                    className="text-xs px-2 py-1 border rounded-md hover:bg-gray-100 ml-2"
+                  >
+                    Guardar
+                  </button>
+                </div>
+              ) : (
+                <div className="flex gap-2 mt-2">
+                  <button
+                    onClick={() => setEditingItem(item.id)}
+                    className="text-xs px-2 py-1 border rounded-md hover:bg-gray-100"
+                  >
                     Editar
                   </button>
-                </Link>
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="text-xs px-2 py-1 border rounded-md hover:bg-gray-100"
-                >
-                  Eliminar
-                </button>
-              </div>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-xs px-2 py-1 border rounded-md hover:bg-gray-100"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         ))

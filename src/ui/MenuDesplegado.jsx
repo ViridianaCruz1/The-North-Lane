@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Menu, ChevronDown } from "lucide-react";
 
 function MenuDesplegado({
@@ -7,10 +8,39 @@ function MenuDesplegado({
   openMenu,
   array,
   onSelectItem,
+  prioridad,
 }) {
+  const arrayOrdenado = prioridad
+    ? [...array].sort((a, b) => (prioridad[a] || 99) - (prioridad[b] || 99))
+    : [...array].sort((a, b) => a.localeCompare(b));
+
+  const menuRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      // Si el clic fue fuera del menú y fuera del botón
+      if (
+        openMenu &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        toggleMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openMenu, toggleMenu]);
+
   return (
     <div className="relative">
       <button
+        ref={buttonRef}
         onClick={() => toggleMenu(menuType)}
         className="flex items-center text-xs sm:text-sm gap-2 bg-[#A47E3B] text-white sm:px-4 px-1 py-2 rounded-md hover:bg-[#D4AF7A] transition-colors"
       >
@@ -24,9 +54,12 @@ function MenuDesplegado({
       </button>
 
       {openMenu === menuType && (
-        <div className="absolute mt-2 bg-white shadow-lg rounded-md border border-gray-200 w-40 sm:w-48 z-20 max-h-64 overflow-y-auto">
+        <div
+          ref={menuRef}
+          className="absolute mt-2 bg-white shadow-lg rounded-md border border-gray-200 w-40 sm:w-48 z-20 max-h-64 overflow-y-auto"
+        >
           {array.length > 0 ? (
-            array.map((item, index) => (
+            arrayOrdenado.map((item, index) => (
               <div
                 key={index}
                 onClick={() => onSelectItem(item)}

@@ -19,7 +19,7 @@ function ProductCard({ parfum }) {
     <div
       key={parfum.id}
       onClick={handleCardClick}
-      className={`bg-white relative shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300
+      className={`cursor-pointer bg-white relative shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-300
         ${parfum.disponible === "Agotado" ? "shadow-red-600" : ""}
       ${parfum.disponible === "Próximamente" ? "shadow-yellow-600" : ""}`}
     >
