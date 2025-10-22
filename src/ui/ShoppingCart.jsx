@@ -2,15 +2,25 @@ import { useCart } from "../context/CartContext";
 import { X } from "lucide-react";
 import ShoppingCartProduct from "./ShoppingCartProduct";
 import Checkout from "./Checkout";
+import { useState } from "react";
 
 export default function ShoppingCart() {
   const { cartItems, isCartOpen, closeCart } = useCart();
+  const [postalCode, setPostalCode] = useState("");
 
-  if (!isCartOpen) return null; // 👈 Solo se renderiza si está abierto
+  if (!isCartOpen) return null; // solo se renderiza si está abierto
 
   const totalCartPrice = cartItems.reduce((accumulator, item) => {
     return accumulator + item.totalPrice;
   }, 0);
+
+  // Validar solo 5 dígitos numéricos
+  const handlePostalCodeChange = (e) => {
+    const value = e.target.value;
+    if (/^\d{0,5}$/.test(value)) {
+      setPostalCode(value);
+    }
+  };
 
   return (
     <>
@@ -39,6 +49,35 @@ export default function ShoppingCart() {
         </div>
 
         <div className="flex flex-col h-[calc(100%-70px)]">
+          <div className=" px-4 pt-3 text-sm text-gray-600 italic">
+            El costo de envío se calcula al momento de realizar tu pago
+          </div>
+
+          {/* Campo para ingresar el CP */}
+          <div className="border-b px-4 py-2 flex flex-col gap-2">
+            <label
+              htmlFor="postalCode"
+              className="text-sm font-medium text-gray-700"
+            >
+              Ingresa tu código postal:
+            </label>
+            <input
+              id="postalCode"
+              type="text"
+              value={postalCode}
+              onChange={handlePostalCodeChange}
+              placeholder="Ej. 12345"
+              className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#A47E3B] focus:outline-none"
+              inputMode="numeric"
+              maxLength={5}
+            />
+            {postalCode.length > 0 && postalCode.length < 5 && (
+              <p className="text-xs text-red-500">
+                El código postal debe tener 5 dígitos.
+              </p>
+            )}
+          </div>
+
           {/* Lista de productos */}
           <ShoppingCartProduct />
 
@@ -48,7 +87,7 @@ export default function ShoppingCart() {
               <span className="font-medium">Subtotal:</span>
               <span className="font-semibold">${totalCartPrice}</span>
             </div>
-            <Checkout totalCartPrice={totalCartPrice} />
+            <Checkout totalCartPrice={totalCartPrice} postalCode={postalCode} />
           </div>
         </div>
       </div>

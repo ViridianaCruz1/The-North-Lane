@@ -93,8 +93,11 @@ export default function ProductDetail() {
           <div className="flex-1 flex flex-col justify-between">
             <div>
               <h1 className="text-2xl font-semibold mb-2">{parfum.nombre}</h1>
-              <p className="text-gray-500 text-sm mb-3 italic">
+              <p className="text-gray-500 text-sm  italic">
                 {parfum.concentracion}
+              </p>
+              <p className="text-gray-500 text-sm font-semibold mb-3 ">
+                {parfum.casa}
               </p>
 
               {/* PRECIO */}
@@ -158,8 +161,8 @@ export default function ProductDetail() {
                   ${parfum.disponible !== "Próximamente" ? "hidden" : ""} 
                   `}
                 >
-                  Este perfume, al no tenerlo en existencia, tardará de 2-3
-                  semanas en llegar. Pero puedes pedirlo ahora
+                  Este perfume tardará de 2-3 semanas en llegar. Pero puedes
+                  pedirlo ahora
                 </div>
                 <div className="mt-2 flex gap-4 items-center">
                   <button
