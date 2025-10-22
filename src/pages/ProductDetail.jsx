@@ -1,8 +1,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ShoppingCart, CreditCard, ArrowLeft } from "lucide-react";
 import getParfums from "../functions/getParfums";
 import LoadingSpinner from "../ui/LoadingSpinner";
-import { ShoppingCart, CreditCard, ArrowLeft } from "lucide-react";
 import SelectMililitros from "../ui/SelectMililitros";
 
 export default function ProductDetail() {
@@ -11,6 +11,7 @@ export default function ProductDetail() {
   const [parfum, setParfum] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [mililitros, setMililitros] = useState(1);
 
   useEffect(() => {
     async function fetchParfum() {
@@ -55,10 +56,10 @@ export default function ProductDetail() {
               onClick={() => navigate(-1)}
               className="text-sm text-gray-600 mb-4 hover:text-gray-900 flex"
             >
-              <ArrowLeft size={20} />
-              <span className="text-sm font-medium pl-3">
+              <ArrowLeft size={24} />
+              {/* <span className="text-sm font-medium pl-3">
                 Regresar al catálogo
-              </span>
+              </span> */}
             </button>
             <img
               src={parfum.image}
@@ -119,7 +120,11 @@ export default function ProductDetail() {
                 </a>
               </div>
 
-              <SelectMililitros />
+              <SelectMililitros onChange={(valor) => setMililitros(valor)} />
+
+              <div className=" text-[#D4AF7A] hover:underline mt-4 inline-block font-semibold">
+                Total: ${parfum.precio * mililitros} por {mililitros}ml
+              </div>
 
               <div className="mt-6 flex gap-4">
                 <button className="flex items-center gap-2 bg-[#A47E3B] text-white px-5 py-2 rounded-lg hover:bg-[#D4AF7A] text-sm ">
