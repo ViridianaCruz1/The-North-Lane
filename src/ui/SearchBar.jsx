@@ -134,7 +134,7 @@ function SearchBar({ onSearchResult }) {
                 alt={item.nombre}
                 className="w-8 h-8 rounded object-cover mr-3"
               />
-              <span className="text-sm">{item.nombre}</span>
+              <span className="text-sm text-gray-600">{item.nombre}</span>
             </li>
           ))}
         </ul>

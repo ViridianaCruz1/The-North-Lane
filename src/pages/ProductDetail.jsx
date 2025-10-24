@@ -59,6 +59,7 @@ export default function ProductDetail() {
       mililitros,
       image: parfum.image,
       totalPrice: parfum.precio * mililitros,
+      precio30ml: parfum?.precio30ml,
     };
     addToCart(product);
 
@@ -153,7 +154,11 @@ export default function ProductDetail() {
                 <SelectMililitros onChange={(valor) => setMililitros(valor)} />
 
                 <div className="text-[#D4AF7A] mt-4 font-semibold">
-                  Total: ${parfum.precio * mililitros} por {mililitros}ml
+                  Total: $
+                  {mililitros === 30
+                    ? parfum?.precio30ml
+                    : parfum.precio * mililitros}{" "}
+                  por {mililitros}ml
                 </div>
 
                 <div
