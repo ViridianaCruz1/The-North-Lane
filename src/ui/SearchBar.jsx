@@ -52,7 +52,7 @@ function SearchBar({ onSearchResult }) {
     // Combinar ambos, priorizando los que empiezan igual
     const orderedSuggestions = [...startsWithMatches, ...containsMatches];
     // Mostrar máximo 5 sugerencias
-    setSuggestions(orderedSuggestions.slice(0, 5));
+    setSuggestions(orderedSuggestions.slice(0, 20));
     setShowSuggestions(true);
   }, [query, parfums, onSearchResult]);
 
@@ -132,7 +132,7 @@ function SearchBar({ onSearchResult }) {
               <img
                 src={item.image}
                 alt={item.nombre}
-                className="w-8 h-8 rounded object-cover mr-3"
+                className="h-7 rounded object-cover mr-3"
               />
               <span className="text-sm text-gray-600">{item.nombre}</span>
             </li>
