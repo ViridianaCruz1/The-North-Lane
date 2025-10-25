@@ -155,7 +155,7 @@ export default function ProductDetail() {
 
                 <div className="text-[#D4AF7A] mt-4 font-semibold">
                   Total: $
-                  {mililitros === 30
+                  {mililitros === 30 && parfum.casa === "Louis Vuitton"
                     ? parfum?.precio30ml
                     : parfum.precio * mililitros}{" "}
                   por {mililitros}ml
