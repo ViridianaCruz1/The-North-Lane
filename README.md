@@ -40,6 +40,7 @@ El desarrollo pone en práctica conocimientos de **React, manejo de estado globa
 
 ## 🧩 Estructura general del proyecto
 
+```bash
 src/
 ├── components/ # Componentes reutilizables de la interfaz
 ├── context/ # Contextos globales (carrito, filtros, etc.)
@@ -47,6 +48,7 @@ src/
 ├── pages/ # Páginas principales de la app
 ├── ui/ # Elementos visuales y de estilo
 └── App.jsx # Estructura principal
+```
 
 ---
 
