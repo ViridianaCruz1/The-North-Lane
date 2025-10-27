@@ -50,6 +50,11 @@ export default function ProductDetail() {
       </div>
     );
 
+  const totalPrice =
+    mililitros === 30 && parfum.casa === "Louis Vuitton"
+      ? parfum?.precio30ml
+      : parfum.precio * mililitros;
+
   const handleAddToCart = () => {
     const product = {
       id: parfum.id,
@@ -58,7 +63,7 @@ export default function ProductDetail() {
       disponible: parfum.disponible,
       mililitros,
       image: parfum.image,
-      totalPrice: parfum.precio * mililitros,
+      totalPrice,
       precio30ml: parfum?.precio30ml,
     };
     addToCart(product);
@@ -154,11 +159,7 @@ export default function ProductDetail() {
                 <SelectMililitros onChange={(valor) => setMililitros(valor)} />
 
                 <div className="text-[#D4AF7A] mt-4 font-semibold">
-                  Total: $
-                  {mililitros === 30 && parfum.casa === "Louis Vuitton"
-                    ? parfum?.precio30ml
-                    : parfum.precio * mililitros}{" "}
-                  por {mililitros}ml
+                  Total: ${totalPrice} por {mililitros}ml
                 </div>
 
                 <div

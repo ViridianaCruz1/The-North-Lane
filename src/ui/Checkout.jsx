@@ -1,6 +1,6 @@
 import { useCart } from "../context/CartContext";
 
-function Checkout({ totalCartPrice, postalCode }) {
+function Checkout({ totalCartPrice, postalCode, disabled }) {
   const { cartItems } = useCart();
 
   const mensajePedido = `Hola Diego, me gustaría realizar mi pedido:\n${cartItems
@@ -19,7 +19,7 @@ Gracias!`;
     <a href={enlaceWhatsApp} target="_blank" rel="noopener noreferrer">
       <button
         className="w-full bg-[#A47E3B] hover:bg-[#D4AF7A] text-white py-2 rounded-md font-medium"
-        disabled={cartItems.length === 0}
+        disabled={cartItems.length === 0 || disabled}
       >
         Realizar pedido
       </button>
