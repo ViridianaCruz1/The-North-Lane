@@ -6,7 +6,9 @@ function Checkout({ totalCartPrice, postalCode, disabled }) {
 ${cartItems
   .map(
     (item) =>
-      `${item.productName} de ${item.store} en el tono ${item.tone} ($${item.price})`
+      `${item.productName} de ${item.store} ${
+        item.tone === null ? "" : `en el tono ${item.tone}`
+      } ($${item.price})`
   )
   .join("\n")}
 Total del pedido: $${totalCartPrice}\n
