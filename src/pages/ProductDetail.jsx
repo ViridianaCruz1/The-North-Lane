@@ -340,18 +340,24 @@ export default function ProductDetail() {
                 <ul className="text-sm text-gray-600 leading-6 pr-6">
                   <li>{product.description}</li>
                 </ul>
-                <h2 className="text-sm font-semibold text-gray-700 mt-2">
+                <h2 className="text-sm font-semibold text-gray-700 mt-6">
                   CATEGORÍA:
                 </h2>
                 <ul className="text-sm text-gray-600 leading-6">
                   <li>{product.categoria}</li>
                 </ul>
+                <div className={`${product.options === null ? "hidden" : ""}`}>
+                  <h2 className="text-sm font-semibold text-gray-700 mt-6">
+                    OPCIONES:
+                  </h2>
+                  <ul className="text-sm text-gray-600 leading-6">
+                    <li>{product.options}</li>
+                  </ul>
+                </div>
               </div>
 
               <div
-                className={`${
-                  product.disponible === "Agotado" ? "hidden" : ""
-                }`}
+                className={`${product.disponible === false ? "hidden" : ""}`}
               >
                 <SelectQuantity onChange={(valor) => setQuantity(valor)} />
 

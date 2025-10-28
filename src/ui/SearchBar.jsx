@@ -21,7 +21,7 @@ function SearchBar({ onSearchResult }) {
         setProducts(data);
       } catch (err) {
         console.error(err);
-        setError("Error al cargar los perfumes");
+        setError("Error al cargar los productos");
       }
     }
     fetchData();
