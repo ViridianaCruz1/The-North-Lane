@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Search } from "lucide-react";
-import getParfums from "../functions/getParfums";
+import getProducts from "../functions/getProducts";
 
 function SearchBar({ onSearchResult }) {
   // Estados para manejar datos, carga y errores
   const [error, setError] = useState(null);
   const [query, setQuery] = useState("");
-  const [parfums, setParfums] = useState([]);
+  const [products, setProducts] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -16,9 +16,9 @@ function SearchBar({ onSearchResult }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const data = await getParfums();
+        const data = await getProducts();
         // Ordenamos alfabéticamente por nombre
-        setParfums(data);
+        setProducts(data);
       } catch (err) {
         console.error(err);
         setError("Error al cargar los perfumes");
@@ -31,30 +31,30 @@ function SearchBar({ onSearchResult }) {
     if (query.trim() === "") {
       setSuggestions([]);
       setShowSuggestions(false);
-      onSearchResult(parfums);
+      onSearchResult(products);
       return;
     }
 
     const lowerQuery = query.toLowerCase();
     // Separar en dos grupos:
     // 1️⃣ los que empiezan con el texto
-    const startsWithMatches = parfums.filter(
+    const startsWithMatches = products.filter(
       (p) =>
-        p.nombre.toLowerCase().startsWith(lowerQuery) ||
-        p.casa.toLowerCase().startsWith(lowerQuery)
+        p.productName.toLowerCase().startsWith(lowerQuery) ||
+        p.brand.toLowerCase().startsWith(lowerQuery)
     );
     // 2️⃣ los que contienen el texto pero no empiezan con él
-    const containsMatches = parfums.filter(
+    const containsMatches = products.filter(
       (p) =>
-        !p.nombre.toLowerCase().startsWith(lowerQuery) &&
-        p.nombre.toLowerCase().includes(lowerQuery)
+        !p.productName.toLowerCase().startsWith(lowerQuery) &&
+        p.productName.toLowerCase().includes(lowerQuery)
     );
     // Combinar ambos, priorizando los que empiezan igual
     const orderedSuggestions = [...startsWithMatches, ...containsMatches];
-    // Mostrar máximo 5 sugerencias
-    setSuggestions(orderedSuggestions.slice(0, 20));
+    // Mostrar máximo 10 sugerencias
+    setSuggestions(orderedSuggestions.slice(0, 10));
     setShowSuggestions(true);
-  }, [query, parfums, onSearchResult]);
+  }, [query, products, onSearchResult]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -71,13 +71,13 @@ function SearchBar({ onSearchResult }) {
     };
   }, []);
 
-  const handleSelect = (nombre) => {
-    setQuery(nombre);
+  const handleSelect = (productName) => {
+    setQuery(productName);
     setShowSuggestions(false);
 
     // Enviar el resultado completo al padre
-    const selected = parfums.find(
-      (p) => p.nombre.toLowerCase() === nombre.toLowerCase()
+    const selected = products.find(
+      (p) => p.productName.toLowerCase() === productName.toLowerCase()
     );
     if (selected) onSearchResult(selected);
   };
@@ -108,7 +108,7 @@ function SearchBar({ onSearchResult }) {
         />
         <button
           type="submit"
-          className="bg-[#A47E3B] hover:bg-[#D4AF7A] text-white px-4 py-2 rounded-r-md flex items-center justify-center h-10"
+          className="bg-[#1E2A38] hover:bg-[#4A6A8A] text-white px-4 py-2 rounded-r-md flex items-center justify-center h-10"
         >
           <Search size={18} />
         </button>
@@ -123,7 +123,7 @@ function SearchBar({ onSearchResult }) {
               className="flex items-center px-3 py-2 cursor-pointer hover:bg-gray-100"
               onMouseDown={(e) => {
                 e.preventDefault(); // evita que el input pierda foco antes del click
-                handleSelect(item.nombre);
+                handleSelect(item.productName);
                 setTimeout(() => {
                   setShowSuggestions(false);
                 }, 0); // permite que React actualice antes de cerrar la lista
@@ -131,10 +131,10 @@ function SearchBar({ onSearchResult }) {
             >
               <img
                 src={item.image}
-                alt={item.nombre}
+                alt={item.productName}
                 className="h-7 rounded object-cover mr-3"
               />
-              <span className="text-sm text-gray-600">{item.nombre}</span>
+              <span className="text-sm text-gray-600">{item.productName}</span>
             </li>
           ))}
         </ul>

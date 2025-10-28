@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useOrder } from "../context/OrderContext.jsx";
 
-export let variableOrder = "nombre";
+export let variableOrder = "productName";
 
 function OrdenarPor() {
   const [openOrdenar, setOpenOrdenar] = useState(null);
@@ -20,11 +20,11 @@ function OrdenarPor() {
           className="flex items-center gap-2 text-gray-400 sm:px-4 px-2 py-2 rounded-md hover:text-gray-500 transition-colors"
         >
           Ordenar por:{" "}
-          {order === "nombre"
+          {order === "productName"
             ? "Nombre (A-Z)"
-            : order === "casa"
-            ? "Casa (A-Z)"
-            : order === "precio"
+            : order === "brand"
+            ? "Marca (A-Z)"
+            : order === "price"
             ? "Precio (Menor a Mayor)"
             : order === "precioMayor"
             ? "Precio (Mayor a Menor)"
@@ -57,7 +57,7 @@ function OrdenarPor() {
               <div
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
                 onClick={() => {
-                  setOrder("nombre");
+                  setOrder("productName");
                   toggleOrdenar(null);
                 }}
               >
@@ -66,16 +66,16 @@ function OrdenarPor() {
               <div
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
                 onClick={() => {
-                  setOrder("casa");
+                  setOrder("brand");
                   toggleOrdenar(null);
                 }}
               >
-                Casa (A-Z)
+                Marca (A-Z)
               </div>
               <div
                 className="px-4 py-2 hover:bg-gray-100 cursor-pointer border-t border-gray-200"
                 onClick={() => {
-                  setOrder("precio");
+                  setOrder("price");
                   toggleOrdenar(null);
                 }}
               >

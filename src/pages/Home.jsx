@@ -6,43 +6,43 @@ import { useOutletContext } from "react-router-dom";
 function Home() {
   const { searchResult } = useOutletContext();
 
-  const [selectedCasa, setSelectedCasa] = useState(null);
-  const [selectedOcasion, setSelectedOcasion] = useState(null);
+  const [selectedBrand, setSelectedBrand] = useState(null);
+  const [selectedStore, setSelectedStore] = useState(null);
   const [selectedCategoria, setSelectedCategoria] = useState(null);
 
-  const handleSelectCasa = (value) => {
-    setSelectedCasa(value);
-    setSelectedOcasion(null); // limpiar otros filtros
+  const handleSelectBrand = (value) => {
+    setSelectedBrand(value);
+    setSelectedStore(null); // limpiar otros filtros
     setSelectedCategoria(null);
   };
 
-  const handleSelectOcasion = (value) => {
-    setSelectedOcasion(value);
-    setSelectedCasa(null); // limpiar otros filtros
+  const handleSelectStore = (value) => {
+    setSelectedStore(value);
+    setSelectedBrand(null); // limpiar otros filtros
     setSelectedCategoria(null);
   };
 
   const handleSelectCategoria = (value) => {
     setSelectedCategoria(value);
-    setSelectedCasa(null); // limpiar otros filtros
-    setSelectedOcasion(null);
+    setSelectedBrand(null); // limpiar otros filtros
+    setSelectedStore(null);
   };
   const handleSelectLimpiar = () => {
     setSelectedCategoria(null);
-    setSelectedCasa(null); // limpiar otros filtros
-    setSelectedOcasion(null);
+    setSelectedBrand(null); // limpiar otros filtros
+    setSelectedStore(null);
   };
 
   return (
     <div>
       <Navbar
-        onSelectCasa={handleSelectCasa}
-        onSelectOcasion={handleSelectOcasion}
+        onSelectBrand={handleSelectBrand}
+        onSelectStore={handleSelectStore}
         onSelectCategoria={handleSelectCategoria}
       />
       <ProductGrid
-        selectedCasa={selectedCasa}
-        selectedOcasion={selectedOcasion}
+        selectedBrand={selectedBrand}
+        selectedStore={selectedStore}
         selectedCategoria={selectedCategoria}
         onSelectLimpiar={handleSelectLimpiar}
         searchResult={searchResult}

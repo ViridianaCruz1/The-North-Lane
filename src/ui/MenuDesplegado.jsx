@@ -8,11 +8,12 @@ function MenuDesplegado({
   openMenu,
   array,
   onSelectItem,
-  prioridad,
 }) {
-  const arrayOrdenado = prioridad
-    ? [...array].sort((a, b) => (prioridad[a] || 99) - (prioridad[b] || 99))
-    : [...array].sort((a, b) => a.localeCompare(b));
+  // const arrayOrdenado = prioridad
+  //   ? [...array].sort((a, b) => (prioridad[a] || 99) - (prioridad[b] || 99))
+  //   : [...array].sort((a, b) => a.localeCompare(b));
+
+  const arrayOrdenado = [...array].sort((a, b) => a.localeCompare(b));
 
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
@@ -42,7 +43,7 @@ function MenuDesplegado({
       <button
         ref={buttonRef}
         onClick={() => toggleMenu(menuType)}
-        className="flex items-center text-xs sm:text-sm gap-2 bg-[#A47E3B] text-white sm:px-4 px-1 py-2 rounded-md hover:bg-[#D4AF7A] transition-colors"
+        className="flex items-center text-xs sm:text-sm gap-2 bg-[#1E2A38] text-white sm:px-4 px-1 py-2 rounded-md hover:bg-[#B3B3B3] transition-colors"
       >
         <Menu className="sm:h-4 sm:w-4 h-3 w-3" />
         {buttonName}

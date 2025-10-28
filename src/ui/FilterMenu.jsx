@@ -2,64 +2,67 @@ import { useState, useEffect } from "react";
 import supabase from "../services/supabase"; // Asegúrate de tener tu conexión lista
 import MenuDesplegado from "./MenuDesplegado";
 
-////////////////////////////////////////////////////////////////////
-//OCASION - NOMBRE
-////////////////////////////////////////////////////////////////////
-
 export default function FilterMenu({
-  onSelectCasa,
-  onSelectOcasion,
+  onSelectStore,
+  onSelectBrand,
   onSelectCategoria,
 }) {
   const [openMenu, setOpenMenu] = useState(null);
-  const [casas, setCasas] = useState([]);
-  const [ocasiones, setOcasiones] = useState([]);
+  const [brand, setBrand] = useState([]);
+  const [store, setStore] = useState([]);
   const [categorias, setCategorias] = useState([]);
+
+  useEffect(() => {
+    async function testConnection() {
+      const { data, error } = await supabase.from("inventario").select("*");
+      console.log("Datos:", data);
+      console.log("Error:", error);
+    }
+    testConnection();
+  }, []);
 
   // Lógica para obtener los datos desde Supabase
   useEffect(() => {
     async function fetchData() {
-      const { data: casasData } = await supabase.from("parfums").select("casa");
-      const { data: ocasionesData } = await supabase
-        .from("parfums")
-        .select("disponible");
+      const { data: brandData } = await supabase
+        .from("inventario")
+        .select("brand");
+      const { data: storeData } = await supabase
+        .from("inventario")
+        .select("store");
       const { data: categoriasData } = await supabase
-        .from("parfums")
+        .from("inventario")
         .select("categoria");
 
-      setCasas(casasData || []);
-      setOcasiones(ocasionesData || []);
+      setBrand(brandData || []);
+      setStore(storeData || []);
       setCategorias(categoriasData || []); // No se usa en el menú desplegable
     }
     fetchData();
   }, []);
 
   //CATEGORIAS UNICAS
-  const casasUnicas = [...new Set(casas.map((item) => item.casa))].sort(
+  const brandUnicas = [...new Set(brand.map((item) => item.brand))].sort(
     (a, b) => a.localeCompare(b)
   );
-  const ocasionesUnicas = [
-    ...new Set(ocasiones.map((item) => item.disponible)),
-  ].sort((a, b) => a.localeCompare(b));
+  const storeUnicas = [...new Set(store.map((item) => item.store))].sort(
+    (a, b) => a.localeCompare(b)
+  );
   const categoriasUnicas = [
     ...new Set(categorias.map((item) => item.categoria)),
   ].sort((a, b) => a.localeCompare(b));
 
-  // Función para alternar menús
-  // const toggleMenu = (menu) => {
-  //   setOpenMenu(openMenu === menu ? null : menu);
-  // };
   const toggleMenu = (menu) => {
     setOpenMenu((prevOpenMenu) => (prevOpenMenu === menu ? null : menu));
   };
 
-  // Nueva función: cuando se selecciona una CASA - OCASION (NOMBRE) - CATEGORIA
-  const handleSelectCasa = (nombreCasa) => {
-    onSelectCasa(nombreCasa); // comunica al componente padre
+  // Nueva función: cuando se selecciona una BRAND - STORE - CATEGORIA
+  const handleSelectBrand = (nombreBrand) => {
+    onSelectBrand(nombreBrand); // comunica al componente padre
     setOpenMenu(null); // cierra el menú
   };
-  const handleSelectOcasion = (nombreOcasion) => {
-    onSelectOcasion(nombreOcasion); // comunica al componente padre
+  const handleSelectStore = (nombreStore) => {
+    onSelectStore(nombreStore); // comunica al componente padre
     setOpenMenu(null); // cierra el menú
   };
   const handleSelectCategoria = (nombreCategoria) => {
@@ -69,27 +72,25 @@ export default function FilterMenu({
 
   return (
     <div className="relative flex flex-wrap justify-center sm:justify-start gap-1 sm:gap-4">
-      {/* Botón Casa */}
+      {/* Botón Store */}
       <MenuDesplegado
-        menuType="casa"
+        menuType="store"
         toggleMenu={toggleMenu}
-        buttonName="Casa"
+        buttonName="Tienda"
         openMenu={openMenu}
-        array={casasUnicas}
-        onSelectItem={handleSelectCasa}
+        array={storeUnicas}
+        onSelectItem={handleSelectStore}
       />
 
-      {/* Botón Ocasión */}
+      {/* Botón Brand */}
       <MenuDesplegado
-        menuType="ocasion"
+        menuType="brand"
         toggleMenu={toggleMenu}
-        buttonName="Disponible"
+        buttonName="Marca"
         openMenu={openMenu}
-        array={ocasionesUnicas}
-        onSelectItem={handleSelectOcasion}
-        prioridad={{ Disponible: 1, Próximamente: 2, Agotado: 3 }}
+        array={brandUnicas}
+        onSelectItem={handleSelectBrand}
       />
-
       {/* Botón categoria */}
       <MenuDesplegado
         menuType="categoria"
@@ -98,7 +99,6 @@ export default function FilterMenu({
         openMenu={openMenu}
         array={categoriasUnicas}
         onSelectItem={handleSelectCategoria}
-        prioridad={{ Nicho: 1, Diseñador: 2, Árabe: 3 }}
       />
     </div>
   );

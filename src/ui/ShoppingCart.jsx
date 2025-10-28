@@ -5,15 +5,10 @@ import Checkout from "./Checkout";
 import { useState } from "react";
 
 export default function ShoppingCart() {
-  const { cartItems, isCartOpen, closeCart } = useCart();
+  const { cartItems, isCartOpen, closeCart, subtotal } = useCart();
   const [postalCode, setPostalCode] = useState("");
 
   if (!isCartOpen) return null;
-
-  const totalCartPrice = cartItems.reduce(
-    (accumulator, item) => accumulator + item.totalPrice,
-    0
-  );
 
   const handlePostalCodeChange = (e) => {
     const value = e.target.value;
@@ -23,6 +18,11 @@ export default function ShoppingCart() {
   };
 
   const isPostalCodeValid = postalCode.length === 5;
+
+  const totalCart = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   return (
     <>
@@ -53,7 +53,8 @@ export default function ShoppingCart() {
         <div className="flex flex-col h-[calc(100%-70px)] overflow-y-auto">
           <div className={`${cartItems.length === 0 ? "hidden" : ""}`}>
             <div className="border-b p-3 text-sm text-gray-600 italic">
-              El costo de envío se calcula al momento de realizar tu pago
+              El costo de envío se calcula al momento de realizar tu pago. O si
+              eres de Puebla, podemos agendar una entrega personal sin costo 🤞🏻
             </div>
 
             {/* Campo de código postal */}
@@ -83,7 +84,7 @@ export default function ShoppingCart() {
           </div>
 
           {/* Lista de productos */}
-          <ShoppingCartProduct />
+          <ShoppingCartProduct totalCartPrice={totalCart} />
 
           {/* Subtotal y botón */}
           <div
@@ -93,7 +94,7 @@ export default function ShoppingCart() {
           >
             <div className="flex justify-between text-gray-700 mb-3">
               <span className="font-medium">Subtotal:</span>
-              <span className="font-semibold">${totalCartPrice}</span>
+              <span className="font-semibold">${subtotal}</span>
             </div>
 
             {/* Checkout deshabilitado si el CP no es válido */}
@@ -103,7 +104,7 @@ export default function ShoppingCart() {
               }`}
             >
               <Checkout
-                totalCartPrice={totalCartPrice}
+                totalCartPrice={subtotal}
                 postalCode={postalCode}
                 disabled={!isPostalCodeValid}
               />

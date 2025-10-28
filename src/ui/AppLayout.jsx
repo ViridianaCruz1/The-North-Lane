@@ -10,7 +10,7 @@ function AppLayout() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       <Header onSearchResult={setSearchResult} />
-      <main className="flex-1">
+      <main className="flex-1 bg-[#F3FAFF]">
         <Outlet context={{ searchResult }} />
       </main>
       <ShoppingCart />
