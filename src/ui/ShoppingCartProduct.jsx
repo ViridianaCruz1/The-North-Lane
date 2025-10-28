@@ -24,14 +24,19 @@ function ShoppingCartProduct() {
         </p>
       ) : (
         cartItems.map((item) => (
-          <div key={item.id} className="flex gap-4 border-b pb-4">
+          <div key={item.id} className="flex gap-4 border-b pb-4 items-center">
             <img
               src={item.image}
               alt={item.productName}
-              className="w-16 object-cover rounded-md"
+              className="w-28 h-28 object-cover rounded-md"
             />
             <div className="flex-1">
               <h3 className="text-sm font-medium">{item.productName}</h3>
+              {item.tone && (
+                <p className="text-gray-600 text-sm italic">
+                  Tono: {item.tone}
+                </p>
+              )}
               <p className="text-gray-500 text-sm">Cantidad: {item.quantity}</p>
               <p className="text-gray-900 font-semibold">
                 ${item.price * item.quantity}

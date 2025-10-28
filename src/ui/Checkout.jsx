@@ -2,12 +2,15 @@ import { useCart } from "../context/CartContext";
 
 function Checkout({ totalCartPrice, postalCode, disabled }) {
   const { cartItems } = useCart();
-
-  const mensajePedido = `Hola Viri, me gustaría realizar mi pedido:\n${cartItems
-    .map((item) => `${item.productName} de ${item.store} ($${item.price})`)
-    .join("\n")}\n
-Total del pedido: $${totalCartPrice}
-Para calcular el costo de envío, este es mi CP: ${postalCode}
+  const mensajePedido = `Hola Viri, me gustaría realizar mi pedido:  
+${cartItems
+  .map(
+    (item) =>
+      `${item.productName} de ${item.store} en el tono ${item.tone} ($${item.price})`
+  )
+  .join("\n")}
+Total del pedido: $${totalCartPrice}\n
+Para calcular el costo de envío, este es mi CP: ${postalCode}\n
 Gracias!`;
 
   const enlaceWhatsApp = `https://wa.me/2227333376?text=${encodeURIComponent(

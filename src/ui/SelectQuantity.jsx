@@ -12,7 +12,7 @@ export default function SelectQuantity({ onChange }) {
   };
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-row gap-3 items-center">
       <label
         htmlFor="quantity"
         className="text-sm font-medium text-gray-700 mb-1"
