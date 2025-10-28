@@ -51,8 +51,8 @@ export default function Pagination({
         className={`px-3 py-1 bg-transparent 
             ${
               currentPage === totalPages
-                ? " text-gray-400 cursor-not-allowed"
-                : " text-gray-800 hover:text-[#A47E3B]"
+                ? " text-gray-400"
+                : " text-gray-800 hover:text-[#1E2A38]"
             }
         ${currentPage === startPage || totalPages <= 1 ? "hidden" : ""}`}
       >
@@ -68,7 +68,7 @@ export default function Pagination({
             totalPages === 1
               ? "hidden"
               : currentPage === number
-              ? "bg-[#A47E3B] text-white"
+              ? "bg-[#1E2A38] text-white"
               : " text-gray-800 hover:bg-gray-200"
           }`}
         >
@@ -83,7 +83,7 @@ export default function Pagination({
             ${
               currentPage === totalPages
                 ? " text-gray-400 cursor-not-allowed"
-                : "e text-gray-800 hover:text-[#A47E3B]"
+                : "e text-gray-800 hover:text-[#1E2A38]"
             }
         ${currentPage === endPage || totalPages <= 1 ? "hidden" : ""}`}
       >
