@@ -17,7 +17,7 @@ export default function ShoppingCart() {
     }
   };
 
-  const isPostalCodeValid = postalCode.length === 5;
+  // const isPostalCodeValid = postalCode.length === 5;
 
   const totalCart = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -71,7 +71,7 @@ export default function ShoppingCart() {
                 value={postalCode}
                 onChange={handlePostalCodeChange}
                 placeholder="Ej. 12345"
-                className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#A47E3B] focus:outline-none"
+                className="border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#1E2A38] focus:outline-none"
                 inputMode="numeric"
                 maxLength={5}
               />
@@ -98,23 +98,27 @@ export default function ShoppingCart() {
             </div>
 
             {/* Checkout deshabilitado si el CP no es válido */}
-            <div
+            {/* <div
               className={`${
                 !isPostalCodeValid ? "opacity-50 cursor-not-allowed" : ""
               }`}
-            >
-              <Checkout
-                totalCartPrice={subtotal}
-                postalCode={postalCode}
-                disabled={!isPostalCodeValid}
-              />
-            </div>
+            > */}
+            <Checkout
+              totalCartPrice={subtotal}
+              postalCode={postalCode}
+              // disabled={!isPostalCodeValid}
+            />
+            {/* </div> */}
 
-            {!isPostalCodeValid && (
+            {/* {!isPostalCodeValid && (
               <p className="text-xs text-red-500 mt-2">
                 Ingresa un código postal válido para continuar con el pago.
               </p>
-            )}
+            )} */}
+
+            <p className="text-xs text-[#1E2A38] mt-2">
+              Si tienes cualquier duda, la podemos resolver en el chat 💙
+            </p>
           </div>
         </div>
       </div>

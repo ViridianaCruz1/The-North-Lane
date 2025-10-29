@@ -25,7 +25,7 @@ function ProductCard({ product }) {
       <img
         src={product.image}
         alt={product.productName}
-        className="w-full h-100 object-cover pt-2"
+        className="w-full object-cover mt-2 px-2 rounded-2xl"
       />
       <div className="sm:p-5 px-2 py-5 flex flex-col justify-between">
         <h3 className="sm:text-lg text-sm font-semibold text-gray-900 mb-2 2xl:flex-row">

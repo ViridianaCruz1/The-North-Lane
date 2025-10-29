@@ -46,6 +46,10 @@ function Footer() {
                 <FaTiktok size={18} />
               </a> */}
             </div>
+            <div className="mt-2">
+              Podemos cotizar cualquier producto que no veas en el catálogo,
+              solo escríbenos :)
+            </div>
           </div>
         </div>
       </div>

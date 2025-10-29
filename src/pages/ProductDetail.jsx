@@ -170,7 +170,7 @@ export default function ProductDetail() {
                 </ul>
                 <div className={`${product.options === null ? "hidden" : ""}`}>
                   <h2 className="text-sm font-semibold text-gray-700 mt-6">
-                    OPCIONES:
+                    {product.store === "SEPHORA" ? "TONOS:" : "TALLAS:"}
                   </h2>
                   <ul className="text-sm text-gray-600 leading-6">
                     <li>{product.options}</li>
@@ -190,14 +190,20 @@ export default function ProductDetail() {
                   htmlFor="tone"
                   className="block text-sm font-semibold text-gray-700 mb-1"
                 >
-                  Escribe tu tono:
+                  {product.store === "SEPHORA"
+                    ? "Escribe tu tono:"
+                    : "Escribe tu talla"}
                 </label>
                 <input
                   id="tone"
                   type="text"
                   value={selectedTone}
                   onChange={(e) => setSelectedTone(e.target.value)}
-                  placeholder="Escribe tu tono, color, sabor de tu preferencia"
+                  placeholder={
+                    product.store === "SEPHORA"
+                      ? "Escribe tu tono..."
+                      : "Escribe tu talla..."
+                  }
                   className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-[#4A6A8A]"
                 />
               </div>
