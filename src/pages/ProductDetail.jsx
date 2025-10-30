@@ -5,6 +5,7 @@ import getProducts from "../functions/getProducts";
 import LoadingSpinner from "../ui/LoadingSpinner";
 import SelectQuantity from "../ui/SelectQuantity";
 import { useCart } from "../context/CartContext";
+import { calculateProductTotal } from "../functions/calculatePrice";
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -17,6 +18,12 @@ export default function ProductDetail() {
   const [selectedImage, setSelectedImage] = useState(null);
   const { addToCart } = useCart();
   const [selectedTone, setSelectedTone] = useState("");
+
+  const { unitPrice, label } = calculateProductTotal(
+    product,
+    quantity,
+    selectedTone
+  );
 
   useEffect(() => {
     async function fetchProduct() {
@@ -70,14 +77,17 @@ export default function ProductDetail() {
     );
 
   const handleAddToCart = () => {
+    // const { total } = calculateProductTotal(product, quantity, selectedTone);
+
     const productToAdd = {
       id: product.id,
       productName: product.productName,
       quantity,
       image: selectedImage,
-      price: product.price,
+      // price: product.price,
       tone: selectedTone || null,
       store: product.store,
+      price: unitPrice,
     };
     addToCart(productToAdd);
 
@@ -178,8 +188,8 @@ export default function ProductDetail() {
                       <>
                         EXTRAS:
                         <br />
-                        Por + $59 agrega cualquier gel antibacterial de
-                        temporada para poner en tu holder
+                        Por +$59 agrega cualquier gel antibacterial de temporada
+                        para poner en tu holder
                         <br />
                         OLORES:
                       </>
@@ -235,8 +245,19 @@ export default function ProductDetail() {
               >
                 <SelectQuantity onChange={(valor) => setQuantity(valor)} />
                 <div className="text-[#4A6A8A] mt-4 font-semibold">
-                  Total: ${product.price * quantity} por {quantity}
-                  {quantity > 1 ? " productos" : " producto"}
+                  {/* Total: ${product.price * quantity} por {quantity}
+                  {quantity > 1 ? " productos" : " producto"} */}
+                  {/* {{`${
+                    product.store === "Bath & Body Works" && selectedTone
+                      ? `Total: $${
+                          (product.price + 59) * quantity
+                        } por ${quantity} ${
+                          quantity > 1 ? " combos" : " combo"
+                        }`
+                      : `Total: $${product.price * quantity} por ${quantity}
+                  ${quantity > 1 ? " productos" : " producto"}`
+                  }`}} */}
+                  {label}
                 </div>
                 <div className="mt-2 flex gap-4 items-center">
                   <button

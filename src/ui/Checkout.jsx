@@ -2,14 +2,15 @@ import { useCart } from "../context/CartContext";
 
 function Checkout({ totalCartPrice, postalCode, disabled }) {
   const { cartItems } = useCart();
-  const mensajePedido = `Hola Viri, me gustaría realizar mi pedido:  
+  const mensajePedido = `Holaa, me gustaría realizar mi pedido:  
 ${cartItems
-  .map(
-    (item) =>
-      `${item.productName} de ${item.store} ${
-        item.tone === null ? "" : `en el tono ${item.tone}`
-      } ($${item.price})`
-  )
+  .map((item) => {
+    return `${item.quantity > 1 ? item.quantity : ""} - ${
+      item.productName
+    } de ${item.store} ${item.tone === null ? "" : `(${item.tone})`} ($${
+      item.price * item.quantity
+    })`;
+  })
   .join("\n")}
 Total del pedido: $${totalCartPrice}\n
 Para calcular el costo de envío, este es mi CP: ${postalCode}\n
