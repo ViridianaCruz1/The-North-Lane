@@ -40,6 +40,33 @@ export default function ProductGrid({
     fetchData();
   }, []);
 
+  // ⬇️ Nuevo useEffect separado solo para restaurar el scroll
+  useEffect(() => {
+    if (!loading && allProducts.length > 0) {
+      const savedScroll = sessionStorage.getItem("scrollPosition");
+      if (savedScroll) {
+        setTimeout(() => {
+          // 🟩 Detectar el mismo contenedor que usamos para guardar el scroll
+          const scrollContainer = document.querySelector(".overflow-y-auto");
+
+          if (scrollContainer) {
+            scrollContainer.scrollTo({
+              top: parseInt(savedScroll, 10),
+              behavior: "instant", // evita el efecto suave
+            });
+          } else {
+            window.scrollTo({
+              top: parseInt(savedScroll, 10),
+              behavior: "instant",
+            });
+          }
+
+          sessionStorage.removeItem("scrollPosition");
+        }, 150); // pequeño retraso para que el DOM cargue por completo
+      }
+    }
+  }, [loading, allProducts]);
+
   // Filtrado y ordenamiento dinámico
   const filteredProducts = useMemo(() => {
     if (!allProducts || allProducts.length === 0) return [];

@@ -12,6 +12,16 @@ function ProductCard({ product }) {
       .replace(/\s+/g, "-") // reemplaza espacios por guiones
       .replace(/[^\w-]+/g, ""); // elimina caracteres especiales
 
+    // 🟩 Buscar el contenedor que controla el scroll
+    const scrollContainer = document.querySelector(".overflow-y-auto");
+
+    // 🟦 Guardar la posición de scroll (si existe el contenedor)
+    if (scrollContainer) {
+      sessionStorage.setItem("scrollPosition", scrollContainer.scrollTop);
+    } else {
+      sessionStorage.setItem("scrollPosition", window.scrollY);
+    }
+
     navigate(`/product/${nombreURL}/${product.id}`);
   };
 
@@ -25,7 +35,7 @@ function ProductCard({ product }) {
       <img
         src={product.image}
         alt={product.productName}
-        className="w-full object-cover mt-2 px-2 rounded-2xl"
+        className="w-full object-cover mt-2 px-2 rounded-2xl justify center"
       />
       <div className="sm:p-5 px-2 py-5 flex flex-col justify-between">
         <h3 className="sm:text-lg text-sm font-semibold text-gray-900 mb-2 2xl:flex-row">

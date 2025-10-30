@@ -107,7 +107,7 @@ export default function ProductDetail() {
               <img
                 src={selectedImage}
                 alt={product.productName}
-                className="max-h-56 sm:max-h-full mx-auto rounded-xl object-contain"
+                className="max-h-68 sm:max-h-full mx-auto rounded-xl object-contain"
               />
             </div>
 
@@ -170,7 +170,20 @@ export default function ProductDetail() {
                 </ul>
                 <div className={`${product.options === null ? "hidden" : ""}`}>
                   <h2 className="text-sm font-semibold text-gray-700 mt-6">
-                    {product.store === "SEPHORA" ? "TONOS:" : "TALLAS:"}
+                    {product.store === "SEPHORA" ? (
+                      "TONOS:"
+                    ) : product.store === "American Eagle" ? (
+                      "TALLAS:"
+                    ) : (
+                      <>
+                        EXTRAS:
+                        <br />
+                        Por + $59 agrega cualquier gel antibacterial de
+                        temporada para poner en tu holder
+                        <br />
+                        OLORES:
+                      </>
+                    )}
                   </h2>
                   <ul className="text-sm text-gray-600 leading-6">
                     <li>{product.options}</li>
@@ -192,7 +205,12 @@ export default function ProductDetail() {
                 >
                   {product.store === "SEPHORA"
                     ? "Escribe tu tono:"
-                    : "Escribe tu talla"}
+                    : product.store === "American Eagle"
+                    ? "Escribe tu talla:"
+                    : product.store === "SEPHORA" &&
+                      product.brand === "Touchland"
+                    ? "Escribe tu olor:"
+                    : "Escribe tu olor:"}
                 </label>
                 <input
                   id="tone"
@@ -202,7 +220,9 @@ export default function ProductDetail() {
                   placeholder={
                     product.store === "SEPHORA"
                       ? "Escribe tu tono..."
-                      : "Escribe tu talla..."
+                      : product.store === "American Eagle"
+                      ? "Escribe tu talla..."
+                      : "Escribe tu olor..."
                   }
                   className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-[#4A6A8A]"
                 />
