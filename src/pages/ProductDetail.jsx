@@ -191,6 +191,7 @@ export default function ProductDetail() {
                         Por +$59 agrega cualquier gel antibacterial de temporada
                         para poner en tu holder
                         <br />
+                        <br />
                         OLORES:
                       </>
                     )}
