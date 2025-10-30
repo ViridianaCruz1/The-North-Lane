@@ -2,20 +2,20 @@ import { useCart } from "../context/CartContext";
 import { X } from "lucide-react";
 import ShoppingCartProduct from "./ShoppingCartProduct";
 import Checkout from "./Checkout";
-import { useState } from "react";
+// import { useState } from "react";
 
 export default function ShoppingCart() {
   const { cartItems, isCartOpen, closeCart, subtotal } = useCart();
-  const [postalCode, setPostalCode] = useState("");
+  // const [postalCode, setPostalCode] = useState("");
 
   if (!isCartOpen) return null;
 
-  const handlePostalCodeChange = (e) => {
-    const value = e.target.value;
-    if (/^\d{0,5}$/.test(value)) {
-      setPostalCode(value);
-    }
-  };
+  // const handlePostalCodeChange = (e) => {
+  //   const value = e.target.value;
+  //   if (/^\d{0,5}$/.test(value)) {
+  //     setPostalCode(value);
+  //   }
+  // };
 
   // const isPostalCodeValid = postalCode.length === 5;
 
@@ -58,7 +58,7 @@ export default function ShoppingCart() {
             </div>
 
             {/* Campo de código postal */}
-            <div className="border-b p-4 flex flex-col gap-2">
+            {/* <div className="border-b p-4 flex flex-col gap-2">
               <label
                 htmlFor="postalCode"
                 className="text-sm font-medium text-gray-700"
@@ -80,7 +80,7 @@ export default function ShoppingCart() {
                   El código postal debe tener 5 dígitos.
                 </p>
               )}
-            </div>
+            </div> */}
           </div>
 
           {/* Lista de productos */}
@@ -105,7 +105,7 @@ export default function ShoppingCart() {
             > */}
             <Checkout
               totalCartPrice={subtotal}
-              postalCode={postalCode}
+              // postalCode={postalCode}
               // disabled={!isPostalCodeValid}
             />
             {/* </div> */}

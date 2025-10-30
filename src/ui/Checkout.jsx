@@ -1,6 +1,6 @@
 import { useCart } from "../context/CartContext";
 
-function Checkout({ totalCartPrice, postalCode, disabled }) {
+function Checkout({ totalCartPrice, disabled }) {
   const { cartItems } = useCart();
   const mensajePedido = `Holaa, me gustaría realizar mi pedido:  
 ${cartItems
@@ -13,7 +13,6 @@ ${cartItems
   })
   .join("\n")}
 Total del pedido: $${totalCartPrice}\n
-Para calcular el costo de envío, este es mi CP: ${postalCode}\n
 Gracias!`;
 
   const enlaceWhatsApp = `https://wa.me/2227333376?text=${encodeURIComponent(

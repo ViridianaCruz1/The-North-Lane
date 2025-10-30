@@ -212,7 +212,7 @@ export default function ProductDetail() {
               >
                 <label
                   htmlFor="tone"
-                  className="block text-sm font-semibold text-gray-700 mb-1"
+                  className="block text-sm font-semibold mb-1 text-gray-700"
                 >
                   {product.store === "SEPHORA"
                     ? "Escribe tu tono:"
@@ -235,7 +235,9 @@ export default function ProductDetail() {
                       ? "Escribe tu talla..."
                       : "Escribe tu olor..."
                   }
-                  className="border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-[#4A6A8A]"
+                  className={`border border-gray-300 rounded-lg p-2 w-full focus:outline-none focus:ring-2 focus:ring-[#4A6A8A] ${
+                    selectedTone ? "" : "bg-[#c5d4e8] text-white"
+                  }`}
                 />
               </div>
 
