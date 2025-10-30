@@ -34,7 +34,14 @@ function ShoppingCartProduct() {
               <h3 className="text-sm font-medium">{item.productName}</h3>
               {item.tone && (
                 <p className="text-gray-600 text-sm italic">
-                  Tono: {item.tone}
+                  {item.store === "SEPHORA"
+                    ? "Tono:"
+                    : item.store === "American Eagle"
+                    ? "Talla:"
+                    : item.store === "SEPHORA" && item.brand === "Touchland"
+                    ? "Olor:"
+                    : "Olor:"}{" "}
+                  {item.tone}
                 </p>
               )}
               <p className="text-gray-500 text-sm">Cantidad: {item.quantity}</p>
