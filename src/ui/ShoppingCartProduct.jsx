@@ -38,8 +38,8 @@ function ShoppingCartProduct() {
                     ? "Tono:"
                     : item.store === "American Eagle"
                     ? "Talla:"
-                    : item.store === "SEPHORA" && item.brand === "Touchland"
-                    ? "Olor:"
+                    : item.store === "Gymshark"
+                    ? "Talla:"
                     : "Olor:"}{" "}
                   {item.tone}
                 </p>

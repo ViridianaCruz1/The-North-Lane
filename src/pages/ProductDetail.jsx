@@ -184,6 +184,8 @@ export default function ProductDetail() {
                       "TONOS:"
                     ) : product.store === "American Eagle" ? (
                       "TALLAS:"
+                    ) : product.store === "Gymshark" ? (
+                      "TALLAS:"
                     ) : (
                       <>
                         EXTRAS:
@@ -218,9 +220,8 @@ export default function ProductDetail() {
                     ? "Escribe tu tono:"
                     : product.store === "American Eagle"
                     ? "Escribe tu talla:"
-                    : product.store === "SEPHORA" &&
-                      product.brand === "Touchland"
-                    ? "Escribe tu olor:"
+                    : product.store === "Gymshark"
+                    ? "Escribe tu talla:"
                     : "Escribe tu olor:"}
                 </label>
                 <input
@@ -232,6 +233,8 @@ export default function ProductDetail() {
                     product.store === "SEPHORA"
                       ? "Escribe tu tono..."
                       : product.store === "American Eagle"
+                      ? "Escribe tu talla..."
+                      : product.store === "Gymshark"
                       ? "Escribe tu talla..."
                       : "Escribe tu olor..."
                   }
