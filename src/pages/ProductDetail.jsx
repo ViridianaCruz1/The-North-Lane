@@ -77,8 +77,6 @@ export default function ProductDetail() {
     );
 
   const handleAddToCart = () => {
-    // const { total } = calculateProductTotal(product, quantity, selectedTone);
-
     const productToAdd = {
       id: product.id,
       productName: product.productName,
@@ -250,21 +248,7 @@ export default function ProductDetail() {
                 }`}
               >
                 <SelectQuantity onChange={(valor) => setQuantity(valor)} />
-                <div className="text-[#4A6A8A] mt-4 font-semibold">
-                  {/* Total: ${product.price * quantity} por {quantity}
-                  {quantity > 1 ? " productos" : " producto"} */}
-                  {/* {{`${
-                    product.store === "Bath & Body Works" && selectedTone
-                      ? `Total: $${
-                          (product.price + 59) * quantity
-                        } por ${quantity} ${
-                          quantity > 1 ? " combos" : " combo"
-                        }`
-                      : `Total: $${product.price * quantity} por ${quantity}
-                  ${quantity > 1 ? " productos" : " producto"}`
-                  }`}} */}
-                  {label}
-                </div>
+                <div className="text-[#4A6A8A] mt-4 font-semibold">{label}</div>
                 <div className="mt-2 flex gap-4 items-center">
                   <button
                     onClick={handleAddToCart}

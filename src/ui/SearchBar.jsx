@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Search } from "lucide-react";
 import getProducts from "../functions/getProducts";
+import { useNavigate } from "react-router-dom";
 
 function SearchBar({ onSearchResult }) {
   // Estados para manejar datos, carga y errores
@@ -9,6 +10,7 @@ function SearchBar({ onSearchResult }) {
   const [products, setProducts] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const navigate = useNavigate();
 
   const containerRef = useRef(null); //
 
@@ -79,7 +81,10 @@ function SearchBar({ onSearchResult }) {
     const selected = products.find(
       (p) => p.productName.toLowerCase() === productName.toLowerCase()
     );
-    if (selected) onSearchResult(selected);
+    if (selected) {
+      onSearchResult(selected);
+      navigate("/");
+    }
   };
 
   const handleSubmit = (e) => {
