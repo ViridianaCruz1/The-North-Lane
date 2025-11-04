@@ -83,7 +83,7 @@ function SearchBar({ onSearchResult }) {
     );
     if (selected) {
       onSearchResult(selected);
-      navigate("/");
+      navigate("/home");
     }
   };
 

@@ -5,14 +5,19 @@ import Home from "./pages/Home";
 import AppLayout from "./ui/AppLayout";
 import NotFound from "./pages/NotFound";
 import ProductDetail from "./pages/ProductDetail";
+import Prehome from "./pages/Prehome";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/",
+        element: <Prehome />,
       },
 
       {
