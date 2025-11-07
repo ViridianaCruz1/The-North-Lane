@@ -31,6 +31,13 @@ function Prehome() {
       title: "Bath & Body Works",
       description: "Holders y accesorios navideños.",
     },
+    {
+      image:
+        "https://images.foxtv.com/static.fox35orlando.com/www.fox35orlando.com/content/uploads/2020/08/1280/720/New-Target-Orlando27.jpg?ve=1&tl=1",
+      title: "Target",
+      description:
+        "Los mejores regalos para navidad, juegos de tus licencias favoritas, termos y más.",
+    },
   ];
 
   const handleClick = (store) => {
